@@ -1,0 +1,27 @@
+{
+    "original_prompt": " a flamenco song at sunset in Spain",
+    "results": [
+        {
+            "ytid": "lmrzR9cSMRY",
+            "prompt": "An acoustic piano is playing a melody along with a flute-sound and an acoustic guitar picking two notes repeatedly. Then the song breaks softly into a new part as the acoustic guitar and piano are fading out. In the background you can hear some insects chirping. Now an electric piano sound is playing a melody along with a male voice singing. His voice sounds sensitive.  This song may be playing for a movie scene.",
+            "keywords": [
+                "flute"
+            ]
+        },
+        {
+            "ytid": "Wgf7UYPVoAo",
+            "prompt": "Someone is playing an acoustic guitar with flamenco techniques and melodies. In the background you can hear someone playing shakers. This recording contains a little bit of reverb on the instruments. This song may be playing as a live performance.",
+            "keywords": [
+                "acoustic guitar",
+                "shakers"
+            ]
+        },
+        {
+            "ytid": "LgKOnHwaCmg",
+            "prompt": "The low quality recording features a live performance of arpeggiated acoustic guitar melody and passionate male vocal singing over it. There are some people chattering and traffic sound effects, probably because it was recorded outside. The recording is noisy, but it sounds emotional regardless.",
+            "keywords": [
+                "live performance"
+            ]
+        }
+    ]
+}
