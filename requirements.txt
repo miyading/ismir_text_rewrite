@@ -1,5 +1,6 @@
-torch
-torchvision
+torch==2.2.2
+torchlibrosa==0.1.0
+torchvision==0.17.2
 numpy
 tqdm
 scikit-learn

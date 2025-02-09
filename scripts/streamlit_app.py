@@ -4,7 +4,7 @@ import os
 
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from run_retrieval import retrieve_prompts
+from scripts.run_retrieval import retrieve_prompts
 
 # Initialize session state to store selections and retrieved prompts
 if "selections" not in st.session_state:
