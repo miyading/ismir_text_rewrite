@@ -4,5 +4,4 @@ numpy
 tqdm
 scikit-learn
 laion_clap
-psychopy
 streamlit

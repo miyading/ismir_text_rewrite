@@ -1,6 +1,8 @@
 # rag_prompt
 
 Computed text embeddings and audio embeddings for 5353 files. Folder contains 5373 audio files, 4 are not .wav, ignored.
+## Installation 
+Python == 3.10.15
 
 ## Experimental Design
 Each participant used the RAG UI to rewrite one novice prompt into an expert prompt. However, for evaluation, they participated in a blind test where they assessed the music generated from a different, unseen novice prompt. The blind test included three versions of the music: one generated from the original novice prompt, one generated using the fully fine-tuned rewrite and another using the RAG-based rewrite.
