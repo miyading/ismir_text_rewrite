@@ -2,3 +2,4 @@ data/audio
 __pycache__/
 *.pyc
 load/
+.env
