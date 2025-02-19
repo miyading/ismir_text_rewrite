@@ -22,11 +22,12 @@ def render_matches(matches, section_title):
     Render the Top K Matches (Text or Audio) with unified selection capabilities.
     """
     st.subheader(section_title)
+    st.markdown('Imagine you are a novice user of a music generation system, you would like to transform the given novice text prompt into a more descriptive text prompt that would help to generate more expert level music. Please select relevant keywords that would aid this novice to expert rewrite. ')
 
     for idx, (score, ytid, prompt, keywords) in enumerate(matches):
         # Display prompt details
         # https://youtu.be/ibTVNWeEPF4?t=454
-        start_s = musiccaps.loc[musiccaps['ytid'] == ytid,'start_s'] 
+        start_s = musiccaps.loc[musiccaps['ytid'] == ytid,'start_s'].values[0]
         st.markdown(f"**Prompt {idx + 1}:** {prompt} (Link: https://www.youtube.com/watch?v={ytid}&t={start_s}, Score: {score:.4f})")
 
         # Get default selections for this specific prompt
@@ -77,7 +78,7 @@ def main():
             st.warning("Please enter a text prompt!")
         else:
             # Retrieve top k matches
-            top_k_text_matches, top_k_audio_matches = retrieve_prompts(st.session_state.input_prompt, k=5)
+            top_k_text_matches, top_k_audio_matches = retrieve_prompts(st.session_state.input_prompt, k=3)
             st.session_state.retrieved_prompts = (top_k_text_matches, top_k_audio_matches)
             # Save the original novice input prompt in session state
             st.session_state.selections["original_prompt"] = st.session_state.input_prompt
