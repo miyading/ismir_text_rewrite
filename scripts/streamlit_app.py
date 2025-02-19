@@ -1,10 +1,13 @@
 import streamlit as st
 import sys
 import os
+import pandas as pd
 
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts.run_retrieval import retrieve_prompts
+
+musiccaps = pd.read_csv("data/musiccaps.csv")
 
 # Initialize session state to store selections and retrieved prompts
 if "selections" not in st.session_state:
@@ -14,7 +17,6 @@ if "retrieved_prompts" not in st.session_state:
 if "input_prompt" not in st.session_state:
     st.session_state.input_prompt = ""
 
-
 def render_matches(matches, section_title):
     """
     Render the Top K Matches (Text or Audio) with unified selection capabilities.
@@ -23,7 +25,9 @@ def render_matches(matches, section_title):
 
     for idx, (score, ytid, prompt, keywords) in enumerate(matches):
         # Display prompt details
-        st.markdown(f"**Prompt {idx + 1}:** {prompt} (Link: https://www.youtube.com/watch?v={ytid}, Score: {score:.4f})")
+        # https://youtu.be/ibTVNWeEPF4?t=454
+        start_s = musiccaps.loc[musiccaps['ytid'] == ytid,'start_s'] 
+        st.markdown(f"**Prompt {idx + 1}:** {prompt} (Link: https://www.youtube.com/watch?v={ytid}&t={start_s}, Score: {score:.4f})")
 
         # Get default selections for this specific prompt
         default_entry = next(
