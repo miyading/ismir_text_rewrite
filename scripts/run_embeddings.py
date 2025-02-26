@@ -1,4 +1,6 @@
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from clap_retrieval.embeddings import compute_text_embeddings, compute_audio_embeddings
 from clap_retrieval.file_utils import load_embeddings, save_embeddings
 from clap_retrieval.clap_model import initialize_clap_model

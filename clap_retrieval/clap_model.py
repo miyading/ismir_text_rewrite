@@ -5,13 +5,16 @@ import torch
 import laion_clap
 from clap_module.factory import load_state_dict
 
-CLAP_MODEL_PATH = 'load/clap_score/630k-audioset-fusion-best.pt'
+# CLAP_MODEL_PATH = 'load/clap_score/630k-audioset-fusion-best.pt'
+CLAP_MODEL_PATH = 'load/clap_score/music_audioset_epoch_15_esc_90.14.pt'
 
 def download_clap_model():
     """
     Downloads the CLAP model if it doesn't exist locally.
     """
-    url = 'https://huggingface.co/lukewys/laion_clap/resolve/main/630k-audioset-fusion-best.pt'
+    
+    # url = 'https://huggingface.co/lukewys/laion_clap/resolve/main/630k-audioset-fusion-best.pt'
+    url = 'https://huggingface.co/lukewys/laion_clap/blob/main/music_audioset_epoch_15_esc_90.14.pt'
 
     if not os.path.exists(CLAP_MODEL_PATH):
         print('Downloading CLAP model...')
@@ -40,7 +43,8 @@ def initialize_clap_model():
     download_clap_model()
 
     # Initialize the CLAP model
-    model = laion_clap.CLAP_Module(enable_fusion=True, device=device)
+    # model = laion_clap.CLAP_Module(enable_fusion=True, device=device)
+    model = laion_clap.CLAP_Module(enable_fusion=False, amodel= 'HTSAT-base', device = device)
 
     # Load model state dictionary and fix any known issues with the checkpoint
     pkg = load_state_dict(CLAP_MODEL_PATH)

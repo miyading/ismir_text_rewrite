@@ -1,26 +1,48 @@
 {
-    "original_prompt": " a flamenco song at sunset in Spain",
+    "original_prompt": "joyful pop song with passionate male vocal with shiny drum set sounds and wooden percussion",
     "results": [
         {
-            "ytid": "lmrzR9cSMRY",
-            "prompt": "An acoustic piano is playing a melody along with a flute-sound and an acoustic guitar picking two notes repeatedly. Then the song breaks softly into a new part as the acoustic guitar and piano are fading out. In the background you can hear some insects chirping. Now an electric piano sound is playing a melody along with a male voice singing. His voice sounds sensitive.  This song may be playing for a movie scene.",
+            "ytid": "_3OlK_1yQOk",
+            "prompt": "The Pop song features harmonizing vocals singing over energetic crash cymbals, groovy bass guitar, wide electric guitar melody, punchy snare and soft kick hits. There is a short drum break at the very beginning of the loop. It sounds happy, nostalgic and euphoric, as it gives off vibes of a Christmas song.",
             "keywords": [
-                "flute"
+                "nostalgic",
+                "wide electric guitars melody"
             ]
         },
         {
-            "ytid": "Wgf7UYPVoAo",
-            "prompt": "Someone is playing an acoustic guitar with flamenco techniques and melodies. In the background you can hear someone playing shakers. This recording contains a little bit of reverb on the instruments. This song may be playing as a live performance.",
+            "ytid": "qM8F6ECriRc",
+            "prompt": "The low quality recording features a traditional pop song that consists of a flat male vocal, alongside exciting background vocals, singing over claps, wooden percussive elements, groovy bass and acoustic guitar melody. It sounds energetic, addictive, fun and joyful - like something you would hear at more traditional parties.",
             "keywords": [
-                "acoustic guitar",
-                "shakers"
+                "acoustic guitar melody",
+                "groovy bass"
             ]
         },
         {
-            "ytid": "LgKOnHwaCmg",
-            "prompt": "The low quality recording features a live performance of arpeggiated acoustic guitar melody and passionate male vocal singing over it. There are some people chattering and traffic sound effects, probably because it was recorded outside. The recording is noisy, but it sounds emotional regardless.",
+            "ytid": "EQSv7DIJJtw",
+            "prompt": "A female singer sings this cool pop melody. The song is medium with a steady drumming rhythm, percussive bass line, keyboard accompaniment and various percussion hits. The song is modern K-pop. The song is romantic and cheerful.",
             "keywords": [
-                "live performance"
+                "various percussion hits"
+            ]
+        },
+        {
+            "ytid": "fEFeRM5bT8o",
+            "prompt": "The low quality recording features a Christmas song that consists of harmonizing vocals singing over synth bell melody, flute lick, groovy bass, acoustic rhythm guitar, shimmering bells, shimmering shakers and piano melody. It sounds happy, fun, euphoric, nostalgic and exciting - just like every Christmas song should sound.",
+            "keywords": [
+                "synth bell melody"
+            ]
+        },
+        {
+            "ytid": "-m9pH0WXQto",
+            "prompt": "The Electro Pop song features a flat female vocal, occasionally supported by wide background female doubling vocals, singing over quiet drums, groovy and boomy bass, arpeggiated synth melody and some sound effects of the airplane and the explosion. In the second part, the drums cut through the mix more, therefore they are more audible, while the new elements appear, including shimmering bells and simple hi hats. Sounds like a low quality recording, especially because of that first part of the loop.",
+            "keywords": [
+                "arpeggiated synth melody"
+            ]
+        },
+        {
+            "ytid": "aWK9CcvOK9w",
+            "prompt": "This song contains a lot of percussive elements and instruments playing a fast paced rhythm with a simple e-bass underlining the drum hits. Strings are being played along with the melody and adding some extra spice. The female voice is singing along with a lot of female and male backing vocals. The voices are panned to the left and right side of the speakers. This song may be playing at a cheerful event while celebrating.",
+            "keywords": [
+                "e-bass"
             ]
         }
     ]
