@@ -1,0 +1,20 @@
+{
+    "original_prompt": "joyful pop song with passionate male vocal with shiny drum set sounds and wooden percussion",
+    "results": [
+        {
+            "ytid": "rLQ93N6RJC0",
+            "prompt": "A male vocalist sings this catchy pop song. The tempo is medium fast with funky drumming, spirited acoustic guitar accompaniment, rhythmic clapping, steady bass line and keyboard harmony. The song is melodic, perky, peppy, youthful, playful, enthusiastic and fun. This is Indie Pop/Indie Rock.",
+            "keywords": [
+                "clapping",
+                "spirited"
+            ]
+        },
+        {
+            "ytid": "nJaezskegdc",
+            "prompt": "The low quality recording features passionate female harmonizing vocals, alongside wide staccato female vocals melodies singing over some claps. It sounds passionate and joyful.",
+            "keywords": [
+                "passionate female harmonizing vocals"
+            ]
+        }
+    ]
+}
