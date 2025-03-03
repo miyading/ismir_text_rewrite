@@ -99,6 +99,7 @@ def render_matches(matches, section_title, modality):
                     "modality": modality,
                 }
             )
+            st.rerun()
 
 # Display retrieved prompts if available
 if st.session_state.retrieved_prompts:
