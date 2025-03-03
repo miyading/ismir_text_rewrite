@@ -1,0 +1,41 @@
+{
+    "original_prompt": "classic New Orleans jazz, vintage swing feel, jazz orchestra with charming female talking intro",
+    "results": [
+        {
+            "ytid": "mwqluX7sXXU",
+            "prompt": "This music is a Jazz instrumental. The tempo is medium fast with lively trumpets, groovy bass lines, infectious drumming, sound of bells and chimes at the end followed by the voice of a female speaking. The music is spirited, ambient, complex, fun, informal, active,smooth and airy and emphatic.",
+            "keywords": [
+                "jazz music",
+                "fun"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "8zcogfmAD_o",
+            "prompt": "A woman talks before the beginning of the music track. The song is instrumental with a trumpet playing a swing melody accompanied by a brass band and jazz orchestra. The tempo is medium with a walking bass line, piano accompaniment, steady rhythm and clapping percussion. The song is a classic swing jazz tune.",
+            "keywords": [
+                "woman talks",
+                "jazz classics"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "LqP4F4a-HOc",
+            "prompt": "This is a live performance of a boogie woogie music piece. There is a trio of female vocal harmony singers. The main melody is being played by the piano and the electric guitar. Then, a trombone plays a brief solo. The bass guitar is playing in the background. The rhythmic background consists of an acoustic drum beat. The atmosphere is upbeat.",
+            "keywords": [
+                "live performance",
+                "female vocals"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "FYux89o7Hhk",
+            "prompt": "This is a live recording of the outro of a latin american salsa song. There are brass instruments like the saxophone and trumpet. There is a man who speaks in Spanish once the music stops. It was the end section or outro of a song.",
+            "keywords": [
+                "trumpet",
+                "live performance"
+            ],
+            "modality": "audio"
+        }
+    ]
+}

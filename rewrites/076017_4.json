@@ -1,0 +1,60 @@
+{
+    "original_prompt": "soul, romantic love song with lush saxophone, drum and piano accompaniment",
+    "results": [
+        {
+            "ytid": "5dG1oPahyto",
+            "prompt": "The Jazz song features a passionate saxophone melody, followed by an arpeggiated string melody and wide synth pad chords. It sounds passionate, mellow, soft, relaxing and easygoing.",
+            "keywords": [
+                "jazz",
+                "mellow",
+                "soft",
+                "relaxing"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "07xGXxIHOL4",
+            "prompt": "A male vocalist sings this soft love song. The tempo is slow with a romantic piano accompaniment, groovy bass line, steady drumming and ambient saxophone harmony. The song is a romantic, emotional, mellow, sentimental, proposal or wedding song. This song is a R&B/Soul song.",
+            "keywords": [
+                "male singer",
+                "r&b",
+                "emotional",
+                "love song",
+                "romantic"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "CphwhKgYHaM",
+            "prompt": "A male vocalist sings this mellow jazz song. The tempo is medium with a spirited saxophone accompaniment, jazzy piano, groovy bass lines, slick drumming and trumpet . The song is melodic, catchy, ambient, romantic, groovy, light and breezy with a swing rhythm. This song is a lively Jazz song.",
+            "keywords": [
+                "male singer",
+                "brass instruments",
+                "swing",
+                "pleasant"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "5ZX9Ig7XXsw",
+            "prompt": "The Soul/R&B song features a passionate male vocal singing over shimmering hi hats, energetic crash cymbals, wide acoustic rhythm guitar melody, shimmering shakers, snappy snare, piano chords and mellow bass. It sounds passionate and romantic - like something you would sing to your partner.",
+            "keywords": [
+                "shimmering hi hats",
+                "romantic"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "t1ULMDpL35I",
+            "prompt": "The low quality recording features a jazz live performance that consists of saxophone solo melody played over energetic cymbals, manic tom roll, punchy snare and kick hits, organ keys chords, groovy double bass and groovy piano chords. It sounds passionate and upbeat.",
+            "keywords": [
+                "live performance",
+                "jazz",
+                "saxophone solo melody",
+                "energetic cymbals",
+                "groovy piano chords"
+            ],
+            "modality": "audio"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "original_prompt": "indie song, female vocal, synth bass, industrial sound, medium fast",
+    "results": [
+        {
+            "ytid": "-v5hgCh3M2w",
+            "prompt": "The Soft Rock song features a passionate female vocalist singing over a wide electric guitar melody, punchy snare, soft kick hits, groovy bass guitar and shimmering hi-hats. It sounds sad, emotional and passionate - like something you would listen to on a day you are feeling down.",
+            "keywords": [
+                "passionate female vocal"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "fpVlYpgTKZI",
+            "prompt": "The Alternative/Indie song features an echoing, passionate female vocal singing over groovy, buzzy synth bass, punchy kick, soft claps, tinny offbeat percussion and synth keys chords that appear at the end of the loop. It sounds groovy, energetic, passionate and addictive.",
+            "keywords": [
+                "synth keys chords",
+                "tinny off beat percussion"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "Ee6MP1bIRUA",
+            "prompt": "A sultry female singer croons over a mellow rock electronic drum beat, electric bass and two clean, picked electric guitars. Has an indie surf feel with a smooth synth pad underneath and lots of reverb.",
+            "keywords": [
+                "mellow rock",
+                "smooth"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "7LlKoQAvXUc",
+            "prompt": "A female singer sings this beautiful melody with vocal harmony. The song is medium tempo with a piano accompaniment, steady drumming rhythm, strong bass drum kicks and a steady bass line. The song is melancholic and emotional. The song is a modern Christmas carol.",
+            "keywords": [
+                "nostalgic"
+            ],
+            "modality": "audio"
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "original_prompt": "indie song, female vocal, synth bass, industrial sound, medium fast",
+    "results": [
+        {
+            "ytid": "fpVlYpgTKZI",
+            "prompt": "The Alternative/Indie song features an echoing, passionate female vocal singing over groovy, buzzy synth bass, punchy kick, soft claps, tinny offbeat percussion and synth keys chords that appear at the end of the loop. It sounds groovy, energetic, passionate and addictive.",
+            "keywords": [
+                "soft claps"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "-v5hgCh3M2w",
+            "prompt": "The Soft Rock song features a passionate female vocalist singing over a wide electric guitar melody, punchy snare, soft kick hits, groovy bass guitar and shimmering hi-hats. It sounds sad, emotional and passionate - like something you would listen to on a day you are feeling down.",
+            "keywords": [
+                "emotional"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "eiUjc4UPnSs",
+            "prompt": "The low quality recording features a pop song that consists of mellow female vocals, followed by female background vocals, singing over punchy kicks, claps, shimmering open hats, stuttering hi hats, buzzy synth bass and wide synth pad chords. It sounds aggressive, bright, punchy, energetic and kind of manic due to those hi hats.",
+            "keywords": [
+                "energetic"
+            ],
+            "modality": "audio"
+        }
+    ]
+}

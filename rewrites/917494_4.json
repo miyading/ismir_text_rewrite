@@ -1,0 +1,58 @@
+{
+    "original_prompt": "soul, romantic love song with lush saxophone, drum and piano accompaniment",
+    "results": [
+        {
+            "ytid": "5dG1oPahyto",
+            "prompt": "The Jazz song features a passionate saxophone melody, followed by an arpeggiated string melody and wide synth pad chords. It sounds passionate, mellow, soft, relaxing and easygoing.",
+            "keywords": [
+                "jazz",
+                "relaxing",
+                "arpeggiated strings melody",
+                "wide synth pad chords"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "07xGXxIHOL4",
+            "prompt": "A male vocalist sings this soft love song. The tempo is slow with a romantic piano accompaniment, groovy bass line, steady drumming and ambient saxophone harmony. The song is a romantic, emotional, mellow, sentimental, proposal or wedding song. This song is a R&B/Soul song.",
+            "keywords": [
+                "soul",
+                "saxophone harmony"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "CphwhKgYHaM",
+            "prompt": "A male vocalist sings this mellow jazz song. The tempo is medium with a spirited saxophone accompaniment, jazzy piano, groovy bass lines, slick drumming and trumpet . The song is melodic, catchy, ambient, romantic, groovy, light and breezy with a swing rhythm. This song is a lively Jazz song.",
+            "keywords": [
+                "male singer"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "5ZX9Ig7XXsw",
+            "prompt": "The Soul/R&B song features a passionate male vocal singing over shimmering hi hats, energetic crash cymbals, wide acoustic rhythm guitar melody, shimmering shakers, snappy snare, piano chords and mellow bass. It sounds passionate and romantic - like something you would sing to your partner.",
+            "keywords": [
+                "snappy snare",
+                "soul/r&b"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "t1ULMDpL35I",
+            "prompt": "The low quality recording features a jazz live performance that consists of saxophone solo melody played over energetic cymbals, manic tom roll, punchy snare and kick hits, organ keys chords, groovy double bass and groovy piano chords. It sounds passionate and upbeat.",
+            "keywords": [
+                "groovy piano chords"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "4yJZ4VX8XQI",
+            "prompt": "This song features synth pads playing in the background. Shimmering notes are played in this song. These notes are played three times. There are no voices in this song. There are no other instruments in this song. This instrumental song has a dreamy feel. This song can be played in a relaxation room or meditation center.",
+            "keywords": [
+                "shimmering sounds"
+            ],
+            "modality": "audio"
+        }
+    ]
+}

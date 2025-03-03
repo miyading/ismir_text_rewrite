@@ -1,0 +1,36 @@
+{
+    "original_prompt": "soul, romantic love song with lush saxophone, drum and piano accompaniment",
+    "results": [
+        {
+            "ytid": "5dG1oPahyto",
+            "prompt": "The Jazz song features a passionate saxophone melody, followed by an arpeggiated string melody and wide synth pad chords. It sounds passionate, mellow, soft, relaxing and easygoing.",
+            "keywords": [
+                "mellow",
+                "soft",
+                "relaxing"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "07xGXxIHOL4",
+            "prompt": "A male vocalist sings this soft love song. The tempo is slow with a romantic piano accompaniment, groovy bass line, steady drumming and ambient saxophone harmony. The song is a romantic, emotional, mellow, sentimental, proposal or wedding song. This song is a R&B/Soul song.",
+            "keywords": [
+                "jazz",
+                "steady drumming",
+                "ambient music",
+                "pleasant"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "CphwhKgYHaM",
+            "prompt": "A male vocalist sings this mellow jazz song. The tempo is medium with a spirited saxophone accompaniment, jazzy piano, groovy bass lines, slick drumming and trumpet . The song is melodic, catchy, ambient, romantic, groovy, light and breezy with a swing rhythm. This song is a lively Jazz song.",
+            "keywords": [
+                "jazz piano",
+                "pleasant",
+                "pleasant"
+            ],
+            "modality": "text"
+        }
+    ]
+}
