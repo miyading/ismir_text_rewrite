@@ -38,7 +38,7 @@ st.subheader("Enhancing Music Generation with Retrieval-Augmented Prompt Rewrite
 st.markdown('Imagine you are a novice user of a music generation system, you would like to transform the given novice text prompt into a more descriptive text prompt that would help to generate more expert-level music. Please select relevant keywords that would aid this novice-to-expert rewrite.')
 
 # **1. Participant ID Input**
-participant_id = st.text_input("Please Enter your Participant ID:", st.session_state.participant_id)
+participant_id = st.text_input("Please enter the random number generated:", st.session_state.participant_id)
 if participant_id:
     st.session_state.participant_id = participant_id
 
