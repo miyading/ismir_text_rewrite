@@ -1,0 +1,30 @@
+{
+    "original_prompt": "joyful pop song with passionate male vocal with shiny drum set sounds and wooden percussion",
+    "results": [
+        {
+            "ytid": "wj4ukZFNEgs",
+            "prompt": "A male vocalist sings this upbeat Latin pop song. The tempo is fast with infectious drumming, groovy bass line,electric guitar, keyboard harmony, acoustic guitar, shakers,synthesiser arrangement and digital drumming. The song is youthful , energetic,enthusiastic, animated,fervent, pulsating, electrifying ,exciting,and buoyant. This song is a Latin Urbano.",
+            "keywords": [
+                "latin pop",
+                "groovy"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "x1KyLxsnJY0",
+            "prompt": "This dance song features a female voice singing the main melody. This is accompanied by programmed percussion playing a simple beat which starts off with a drum roll. The bass plays the root notes of the chords. A synth plays chords in the background. This song has an upbeat mood. This song can be played in a club.",
+            "keywords": [
+                "programmed percussion"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "nJaezskegdc",
+            "prompt": "The low quality recording features passionate female harmonizing vocals, alongside wide staccato female vocals melodies singing over some claps. It sounds passionate and joyful.",
+            "keywords": [
+                "clapping"
+            ],
+            "modality": "audio"
+        }
+    ]
+}

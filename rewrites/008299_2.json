@@ -1,0 +1,22 @@
+{
+    "original_prompt": "Calming classical music similar to Bach with harp",
+    "results": [
+        {
+            "ytid": "_HfaIP9e0ww",
+            "prompt": "This is an instrumental cover of a ballad piece. The harp is gently playing the melody with improvisational touches differing from the original version. There is a calming and soothing atmosphere to this piece. This music could be playing in the background at a hotel or a spa resort.",
+            "keywords": [
+                "soothing"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "OiNlYrlJE4g",
+            "prompt": "This music is instrumental. The tempo is slow with a euphonious harp melody with no accompaniment. The music is soft, mellow, ethereal, melancholic, nostalgic, pensive, soft and ambient. This music is a Western Classical.",
+            "keywords": [
+                "mellow",
+                "minimalist"
+            ],
+            "modality": "text"
+        }
+    ]
+}

@@ -1,0 +1,53 @@
+{
+    "original_prompt": "joyful pop song with passionate male vocal with shiny drum set sounds and wooden percussion",
+    "results": [
+        {
+            "ytid": "wj4ukZFNEgs",
+            "prompt": "A male vocalist sings this upbeat Latin pop song. The tempo is fast with infectious drumming, groovy bass line,electric guitar, keyboard harmony, acoustic guitar, shakers,synthesiser arrangement and digital drumming. The song is youthful , energetic,enthusiastic, animated,fervent, pulsating, electrifying ,exciting,and buoyant. This song is a Latin Urbano.",
+            "keywords": [
+                "fast tempo"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "rLQ93N6RJC0",
+            "prompt": "A male vocalist sings this catchy pop song. The tempo is medium fast with funky drumming, spirited acoustic guitar accompaniment, rhythmic clapping, steady bass line and keyboard harmony. The song is melodic, perky, peppy, youthful, playful, enthusiastic and fun. This is Indie Pop/Indie Rock.",
+            "keywords": [
+                "lively acoustic guitar"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "NWL-P08eM-U",
+            "prompt": "A male vocalist sings this peppy rap. The tempo is medium fast with an enthusiastic and catchy guitar rhythm, drum stick clicks, congas, steady drumming and keyboard accompaniment. The song is simple, punchy; buoyant, youthful, animated, vibrant and has a catchy dance groove. This song is contemporary Hip-Hop/Rap.",
+            "keywords": [
+                "keyboard harmony"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "x1KyLxsnJY0",
+            "prompt": "This dance song features a female voice singing the main melody. This is accompanied by programmed percussion playing a simple beat which starts off with a drum roll. The bass plays the root notes of the chords. A synth plays chords in the background. This song has an upbeat mood. This song can be played in a club.",
+            "keywords": [
+                "dance song"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "nJaezskegdc",
+            "prompt": "The low quality recording features passionate female harmonizing vocals, alongside wide staccato female vocals melodies singing over some claps. It sounds passionate and joyful.",
+            "keywords": [
+                "wide staccato female vocal melody"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "2SenLjPbGzU",
+            "prompt": "The low quality recording features a pop song that consists of a passionate male vocal, alongside background male vocals, singing over punchy 808 bass, claps, shimmering hi hats, wide tinny percussion, repetitive synth lead melody and groovy synth keys melody. It sounds groovy, addictive and exciting - like something you would hear in a club.",
+            "keywords": [
+                "background male vocals"
+            ],
+            "modality": "audio"
+        }
+    ]
+}
