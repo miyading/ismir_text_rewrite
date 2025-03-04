@@ -1,7 +1,4 @@
-{
-    "test_1": "Create an engaging R&B track with a groovy bass line, female vocals, strings, drums, and pad sounds. This song should be suited for an intimate setting, with a mid to high register, simple production, and an engaging vibe.",
-<<<<<<< HEAD
-    "638296_4": "Create a soothing jazz piano-led love song with mellow saxophone and steady drumming in a relaxing and ambient style.",
+{   "638296_4": "Create a soothing jazz piano-led love song with mellow saxophone and steady drumming in a relaxing and ambient style.",
     "638296_5": "Craft an emotional indie song featuring a female vocal, groovy synths, and a mix of clean picked electric guitar and surf guitar, supported by an electric bass guitar. Deliver a mellow rock vibe with an industrial sound, enhanced by soft kick hits, spring reverb, shimmering hi hats, and a punchy snare and kick.",
     "638296_6": "Refine the prompt to: \"Live performance of upbeat New Orleans jazz swing featuring lively trumpets, boogie-woogie piano, enchanting chimes, and atmospheric trombone. A woman introduces the lively spirited swing music with syncopated piano accompaniment, steady drumming rhythm, and charming female vocals.\"",
     "023205_4": "Create a dreamy, relaxing soul/R&B love ballad featuring lush saxophone, piano, and punchy kick drum accompaniment with a fusion of jazz and ambient music elements.",
@@ -21,8 +18,7 @@
     "076017_6": "Create a lively New Orleans big band jazz instrumental featuring a charming female talking introduction, woman talking, upbeat piano, informal harmonies, medium-fast vintage swing tempo, brass instruments, spirited violin, and trumpet-led melody. Incorporate elements of Latin American music, fun and lively acoustic drums, and an energetic big band orchestra for an engaging live performance, closing with an exciting jazz outro.",
     "546343_4": "Craft a slow tempo jazz R&B love song, rich with relaxed and soft saxophone and trumpet accompaniment, emotional piano and drums, and wide synth pad chords, embracing a bluesy and passionate vibe.",
     "546343_5": "Craft an indie song with soft claps, energetic female vocal, synth bass, industrial sound, medium-fast tempo, and full of emotional depth.",
-    "546343_6": "Create a boogie woogie jazz orchestra with a vintage swing feel, featuring a charming female speaking introduction in Spanish for a fun and chill jazz music experience reminiscent of classic New Orleans style."
-=======
+    "546343_6": "Create a boogie woogie jazz orchestra with a vintage swing feel, featuring a charming female speaking introduction in Spanish for a fun and chill jazz music experience reminiscent of classic New Orleans style.",
     "146656_1": "Create a romantic and smooth R&B track for a male singer, featuring emotional lyrics, acoustic drums, bass guitar, strings, and suited for an intimate setting with a medium to uptempo vibe.",
     "146656_2": "Create calming classical music reminiscent of Bach using a melodic-sounding harp played gently, ensuring no voices are included. The music should be joyful, at a moderate tempo, and ultimately relaxing.",
     "146656_3": "Create a fast-tempo Latin pop track with punchy drumming, a groovy dance groove, passionate male vocals, shiny drum set sounds, wooden percussion, clapping, and a club music vibe.",
@@ -47,5 +43,4 @@
     "823480_1": "Create an urban R&B/pop track suited for an intimate setting with passionate male and female vocals, featuring reggae elements, groovy bassline, energetic drums, electric guitar, shimmering hi hats, and a passionate male voice singing about love, with a female voice responding, incorporating phone ringing sounds, smooth keyboard and pad textures, and occasional alternative rap verses.",
     "823480_2": "Create a slow tempo, low-quality instrumental ballad featuring joyful and enchanting harp playing, inspired by Bach for a soft and inspirational music experience.",
     "823480_3": "Create a joyful Latin pop track featuring a passionate male singer with energetic hip-hop flair. Incorporate punchy 808 bass and groovy synth keys alongside shiny drum set sounds and wooden percussion. Use synthesizer arrangements and synth backing for an upbeat and catchy rhythm. Include wide staccato female vocal melodies for a club music feel, and passionate female harmonizing vocals for an extra touch of emotion."
->>>>>>> c348511 (update rewrties promptID 1-3 3/03)
 }
