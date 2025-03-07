@@ -1,0 +1,60 @@
+{
+    "original_prompt": "indie song, female vocal, synth bass, industrial sound, medium fast",
+    "results": [
+        {
+            "ytid": "fpVlYpgTKZI",
+            "prompt": "The Alternative/Indie song features an echoing, passionate female vocal singing over groovy, buzzy synth bass, punchy kick, soft claps, tinny offbeat percussion and synth keys chords that appear at the end of the loop. It sounds groovy, energetic, passionate and addictive.",
+            "keywords": [
+                "punchy kick",
+                "echoing passionate female vocal",
+                "synth keys chords"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "-v5hgCh3M2w",
+            "prompt": "The Soft Rock song features a passionate female vocalist singing over a wide electric guitar melody, punchy snare, soft kick hits, groovy bass guitar and shimmering hi-hats. It sounds sad, emotional and passionate - like something you would listen to on a day you are feeling down.",
+            "keywords": [
+                "punchy snare",
+                "soft kick hits"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "Ee6MP1bIRUA",
+            "prompt": "A sultry female singer croons over a mellow rock electronic drum beat, electric bass and two clean, picked electric guitars. Has an indie surf feel with a smooth synth pad underneath and lots of reverb.",
+            "keywords": [
+                "electronic drums",
+                "surf guitar"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "7LlKoQAvXUc",
+            "prompt": "A female singer sings this beautiful melody with vocal harmony. The song is medium tempo with a piano accompaniment, steady drumming rhythm, strong bass drum kicks and a steady bass line. The song is melancholic and emotional. The song is a modern Christmas carol.",
+            "keywords": [
+                "piano accompaniment",
+                "string bass drum kicks"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "-4NLarMj4xU",
+            "prompt": "The Pop song features a soft female vocal singing over sustained pulsating synth lead, mellow piano melody, sustained synth brass, punchy kick, claps. tinny wide hi hats and high pitched female vocal melody. It sounds emotional, sad, passionate and like something you would hear on a radio.",
+            "keywords": [
+                "sustained synth bass",
+                "claps"
+            ],
+            "modality": "audio"
+        },
+        {
+            "ytid": "eiUjc4UPnSs",
+            "prompt": "The low quality recording features a pop song that consists of mellow female vocals, followed by female background vocals, singing over punchy kicks, claps, shimmering open hats, stuttering hi hats, buzzy synth bass and wide synth pad chords. It sounds aggressive, bright, punchy, energetic and kind of manic due to those hi hats.",
+            "keywords": [
+                "stuttering hi hats",
+                "buzzy synth bass"
+            ],
+            "modality": "audio"
+        }
+    ]
+}
