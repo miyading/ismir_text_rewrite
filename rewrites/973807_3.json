@@ -1,0 +1,39 @@
+{
+    "original_prompt": "joyful pop song with passionate male vocal with shiny drum set sounds and wooden percussion",
+    "results": [
+        {
+            "ytid": "wj4ukZFNEgs",
+            "prompt": "A male vocalist sings this upbeat Latin pop song. The tempo is fast with infectious drumming, groovy bass line,electric guitar, keyboard harmony, acoustic guitar, shakers,synthesiser arrangement and digital drumming. The song is youthful , energetic,enthusiastic, animated,fervent, pulsating, electrifying ,exciting,and buoyant. This song is a Latin Urbano.",
+            "keywords": [
+                "groovy"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "rLQ93N6RJC0",
+            "prompt": "A male vocalist sings this catchy pop song. The tempo is medium fast with funky drumming, spirited acoustic guitar accompaniment, rhythmic clapping, steady bass line and keyboard harmony. The song is melodic, perky, peppy, youthful, playful, enthusiastic and fun. This is Indie Pop/Indie Rock.",
+            "keywords": [
+                "steady bass line"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "NWL-P08eM-U",
+            "prompt": "A male vocalist sings this peppy rap. The tempo is medium fast with an enthusiastic and catchy guitar rhythm, drum stick clicks, congas, steady drumming and keyboard accompaniment. The song is simple, punchy; buoyant, youthful, animated, vibrant and has a catchy dance groove. This song is contemporary Hip-Hop/Rap.",
+            "keywords": [
+                "energetic"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "2SenLjPbGzU",
+            "prompt": "The low quality recording features a pop song that consists of a passionate male vocal, alongside background male vocals, singing over punchy 808 bass, claps, shimmering hi hats, wide tinny percussion, repetitive synth lead melody and groovy synth keys melody. It sounds groovy, addictive and exciting - like something you would hear in a club.",
+            "keywords": [
+                "punchy 808 bass",
+                "groovy synth keys",
+                "addictive"
+            ],
+            "modality": "audio"
+        }
+    ]
+}

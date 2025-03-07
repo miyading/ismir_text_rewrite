@@ -1,0 +1,41 @@
+{
+    "original_prompt": "Calming classical music similar to Bach with harp",
+    "results": [
+        {
+            "ytid": "_HfaIP9e0ww",
+            "prompt": "This is an instrumental cover of a ballad piece. The harp is gently playing the melody with improvisational touches differing from the original version. There is a calming and soothing atmosphere to this piece. This music could be playing in the background at a hotel or a spa resort.",
+            "keywords": [
+                "instrumental",
+                "calming",
+                "relaxing"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "YGWweVRzFrw",
+            "prompt": "This clip features a heavenly sounding harp. The piece is arpeggio driven and elicits a feeling of tranquility and peace. The harp is full bodied and the instrumentalist balances the high tones with a deep bass sound.",
+            "keywords": [
+                "tranquility",
+                "melodic sounding harp"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "OiNlYrlJE4g",
+            "prompt": "This music is instrumental. The tempo is slow with a euphonious harp melody with no accompaniment. The music is soft, mellow, ethereal, melancholic, nostalgic, pensive, soft and ambient. This music is a Western Classical.",
+            "keywords": [
+                "western classical"
+            ],
+            "modality": "text"
+        },
+        {
+            "ytid": "qutPvh6TFd8",
+            "prompt": "This song features two harps playing a melody. In the beginning, both harps play the harp complimenting each other. After one bar, one of the harps plays the higher repetitive phrase and the other harp plays the lower register notes. This song has a happy mood. There are no other instruments in this song. There are no voices in this song. This song can be played in an inspirational video.",
+            "keywords": [
+                "no voices",
+                "moderate tempo"
+            ],
+            "modality": "audio"
+        }
+    ]
+}
