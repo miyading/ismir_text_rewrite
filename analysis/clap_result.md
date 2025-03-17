@@ -22,7 +22,7 @@ CLAP score: tensor(0.4266,device='cuda:0')examples/novice/
 ```
 [musiccaps] CLAP score:  tensor(0.4442, device='cuda:0') examples/rag/ ['006839_5', '008299_3', '006839_6', '006839_4', '008299_1', '008299_2']
 [musiccaps] CLAP score:  tensor(0.5483, device='cuda:0') examples/rag/ ['024904_1', '023205_5', '024904_2', '023205_4', '024904_3', '023205_6']
-[musiccaps] CLAP score:  tensor(0.5470, device='cuda:0') examples/rag/ ['076017_6', '046321_2', '046321_3', '046321_1', '076017_5', '076017_4'
+[musiccaps] CLAP score:  tensor(0.5470, device='cuda:0') examples/rag/ ['076017_6', '046321_2', '046321_3', '046321_1', '076017_5', '076017_4']
 [musiccaps] CLAP score:  tensor(0.5093, device='cuda:0') examples/rag/ ['113401_6', '113401_4', '973807_1', '113401_5', '973807_3', '973807_2']
 [musiccaps] CLAP score:  tensor(0.4560, device='cuda:0') examples/rag/ ['190926_2', '190926_1', '445243_6', '445243_4', '445243_5', '190926_3']
 [musiccaps] CLAP score:  tensor(0.5006, device='cuda:0') examples/rag/ ['241574_3', '504071_5', '504071_4', '241574_1', '504071_6', '241574_2']
