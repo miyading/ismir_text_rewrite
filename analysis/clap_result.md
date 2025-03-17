@@ -7,6 +7,16 @@ a = np.array([0.4442,0.5483,0.5470,0.4867,0.4560,0.5006,0.4876,0.5111,0.5204,0.4
 0.5005416666666668
 ```
 
+## LoRA & Novice
+
+```
+# LoRA
+CLAP score: tensor(0.4621,device='cuda:0')examples/lora/
+
+# Novice
+CLAP score: tensor(0.4266,device='cuda:0')examples/novice/
+```
+
 
 ## Group evaluation log
 ```
