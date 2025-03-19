@@ -69,16 +69,15 @@ for dim, q_prefix in dimension_map.items():
 #    (You could also add LoRA vs. Novice if desired)
 
 dimensions_to_test = ["expertness", "musicality", "production", "preference"]
-for dim in dimensions_to_test:
-    # RAG vs. Novice
-    run_paired_ttest(df, dim, "RAG", "Novice", alternative="greater")
+# for dim in dimensions_to_test:
+#     # RAG vs. Novice
+#     run_paired_ttest(df, dim, "RAG", "Novice", alternative="greater")
 
-    # RAG vs. LoRA
-    run_paired_ttest(df, dim, "RAG", "LoRA", alternative="greater")
+#     # RAG vs. LoRA
+#     run_paired_ttest(df, dim, "RAG", "LoRA", alternative="greater")
 
 
 import statsmodels.formula.api as smf
-
 
 # Linear Mixed Effect Model Random Intercept with PromptID as random variable
 # Long format 
@@ -130,20 +129,30 @@ def fit_mixed_model_promptID(df_long):
     Returns the fitted model result.
     """
     # Treat Version as a categorical variable
-    # Can specify whichever category as baseline (reference)
     model = smf.mixedlm(
         formula="Score ~ C(Version)",
         data=df_long,
-        groups=df_long["ParticipantID"]
+        groups=df_long["PromptID"]
     )
     result = model.fit(method='lbfgs')
     return result
+
+def fit_fixed_effect_model(df_long):
+    """
+    Given a long DataFrame with columns:
+      ParticipantID, PromptID, Version, Score
+    fit a ordinary least square model:
+      Score ~ Version * PromptID.
+    Does not account for any random effects for ParticipantID.
+    """
+    model = smf.ols("Score ~ C(Version) * C(PromptID)", data=df_long).fit()
+    return model
 
 def fit_mixed_model_promptID_participantID(df_long):
     """
     Given a long DataFrame with columns:
       ParticipantID, PromptID, Version, Score
-    fit a linear mixed-effects model:
+    fit the 3rd linear mixed-effects model as described in the paper:
       Score ~ Version * PromptID +  (1 | ParticipantID).
     Returns the fitted model result.
     """
@@ -159,27 +168,41 @@ dimensions = ["expertness", "musicality", "production", "preference"]
 for dim in dimensions:
     # A) Pivot the data for one dimension
     df_long = pivot_one_dimension(df, dim)
+    # Relevel so that Novice is always the reference when modeling
+    df_long["Version"] = df_long["Version"].astype("category")
+    df_long["Version"] = df_long["Version"].cat.set_categories(["Novice", "LoRA", "RAG"], ordered=True)
 
-    # B) Fit a linear mixed model: Score ~ Version + (1|PromptID)
-    result = fit_mixed_model_promptID(df_long)
-    # Fit a linear mixed model: Score ~ Version * PromptID + (1|PariticipantID)
+    # B) 
+    # Fit an OLS model: Score ~ Version
+    result = smf.ols("Score ~ C(Version)", data=df_long).fit()
+    # # Fit an OLS model: Score ~ Version * PromptID
+    result_promptID = fit_fixed_effect_model(df_long)
+    # # Fit a linear mixed model: Score ~ Version * PromptID + (1|PariticipantID)
     result_participantID = fit_mixed_model_promptID_participantID(df_long)
 
-    # C) Print results
-    print(f"=== {dim.capitalize()} Model ===")
+    # result_test = fit_mixed_model_promptID(df_long)
+
+    # # C) Print results
+    print(f"=== {dim.capitalize()} Score ~ Version Model ===")
     print(result.summary())
     print("\n")
 
-    print(f"=== {dim.capitalize()} Participant as Random Effect Model ===")
+    print(f"=== {dim.capitalize()} Score ~ Version * PromptID Model ===")
+    print(result_promptID.summary())
+    print("\n")
+
+    print(f"=== {dim.capitalize()} Score ~ Version * PromptID + (1|PariticipantID) Model ===")
     print(result_participantID.summary())
     print("\n")
 
+    # print(f"=== {dim.capitalize()} Score ~  Model ===")
+    # print(result_test.summary())
+    # print("\n")
 
-# df_long has columns: ParticipantID, PromptID, Version, Score
-# and want to ignore (not model) the fact that multiple Prompts/Participants are repeated.
-
-# model_ols = smf.ols("Score ~ C(Version)", data=df_long).fit()
-# print(model_ols.summary())
-
-
-
+import seaborn as sns
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10, 6))
+sns.lineplot(x="Version", y="Score", hue="PromptID", data=df_long, marker="o", palette="tab10", alpha=0.5)
+plt.title("Mean Score by Version (Different Lines for PromptID)")
+plt.legend(title="PromptID", bbox_to_anchor=(1, 1), loc='upper left')
+plt.show()
