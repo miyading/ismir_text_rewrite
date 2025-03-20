@@ -198,11 +198,94 @@ for dim in dimensions:
     # print(f"=== {dim.capitalize()} Score ~  Model ===")
     # print(result_test.summary())
     # print("\n")
-
 import seaborn as sns
 import matplotlib.pyplot as plt
-plt.figure(figsize=(10, 6))
-sns.lineplot(x="Version", y="Score", hue="PromptID", data=df_long, marker="o", palette="tab10", alpha=0.5)
-plt.title("Mean Score by Version (Different Lines for PromptID)")
+
+sns.set_theme(style="whitegrid")
+
+# Initialize figure
+f, ax = plt.subplots(figsize=(10, 6))
+sns.despine(bottom=True, left=True)  # Clean up plot edges
+
+# Strip plot (scatter with jitter for individual points)
+sns.stripplot(
+    data=df_long, x="Version", y="Score", hue="PromptID",
+    dodge=True, jitter=True, alpha=0.25, zorder=1, palette="tab10", size=8
+)
+
+# Overlay a point plot to show conditional means
+sns.pointplot(
+    data=df_long, x="Version", y="Score", hue="PromptID",
+    dodge=0.8 - 0.8 / df_long["PromptID"].nunique(),  # Adjust spacing for hue
+    palette="dark", errorbar=None, markers="d", markersize=6, linestyle="none"
+)
+
+# Improve the legend
+sns.move_legend(
+    ax, loc="lower right", ncol=3, frameon=True, columnspacing=1, handletextpad=0,
+)
+
+# Title and labels
+plt.title("Jittered Strip Plot with Mean Scores by Version (Colored by PromptID)")
+plt.xlabel("Version")
+plt.ylabel("Score")
+
+plt.show()
+
+# Jittered Stript Plot for Meta Audiobox metric
+data = [
+    {"path": "audios/RAG4", "Version": "RAG", "PromptID": "4", "CE": 7.757, "CU": 7.888, "PC": 6.003, "PQ": 8.011},
+    {"path": "audios/RAG5", "Version": "RAG", "PromptID": "5", "CE": 7.071, "CU": 7.78, "PC": 5.42, "PQ": 7.782},
+    {"path": "audios/RAG6", "Version": "RAG", "PromptID": "6", "CE": 7.708, "CU": 7.86, "PC": 6.526, "PQ": 8.025},
+    {"path": "audios/RAG1", "Version": "RAG", "PromptID": "1", "CE": 7.576, "CU": 7.887, "PC": 6.088, "PQ": 8.072},
+    {"path": "audios/RAG2", "Version": "RAG", "PromptID": "2", "CE": 7.306, "CU": 8.052, "PC": 4.178, "PQ": 8.042},
+    {"path": "audios/RAG3", "Version": "RAG", "PromptID": "3", "CE": 7.59, "CU": 7.829, "PC": 6.693, "PQ": 8.01},
+    {"path": "audios/LoRA1", "Version": "LoRA", "PromptID": "1", "CE": 7.443, "CU": 8.039, "PC": 5.375, "PQ": 7.724},
+    {"path": "audios/LoRA2", "Version": "LoRA", "PromptID": "2", "CE": 6.902, "CU": 8.138, "PC": 2.637, "PQ": 7.809},
+    {"path": "audios/LoRA3", "Version": "LoRA", "PromptID": "3", "CE": 7.305, "CU": 8.213, "PC": 5.262, "PQ": 8.314},
+    {"path": "audios/LoRA4", "Version": "LoRA", "PromptID": "4", "CE": 7.655, "CU": 7.816, "PC": 5.112, "PQ": 8.127},
+    {"path": "audios/LoRA5", "Version": "LoRA", "PromptID": "5", "CE": 6.857, "CU": 7.472, "PC": 6.242, "PQ": 7.505},
+    {"path": "audios/LoRA6", "Version": "LoRA", "PromptID": "6", "CE": 8.168, "CU": 8.209, "PC": 6.513, "PQ": 8.028},
+    {"path": "audios/Novice1", "Version": "Novice", "PromptID": "1", "CE": 7.342, "CU": 7.221, "PC": 6.759, "PQ": 7.523},
+    {"path": "audios/Novice2", "Version": "Novice", "PromptID": "2", "CE": 7.082, "CU": 8.217, "PC": 2.609, "PQ": 8.004},
+    {"path": "audios/Novice3", "Version": "Novice", "PromptID": "3", "CE": 7.068, "CU": 7.244, "PC": 6.757, "PQ": 7.863},
+    {"path": "audios/Novice4", "Version": "Novice", "PromptID": "4", "CE": 8.082, "CU": 8.002, "PC": 5.429, "PQ": 8.252},
+    {"path": "audios/Novice5", "Version": "Novice", "PromptID": "5", "CE": 2.622, "CU": 2.826, "PC": 5.894, "PQ": 3.848},
+    {"path": "audios/Novice6", "Version": "Novice", "PromptID": "6", "CE": 7.123, "CU": 6.431, "PC": 6.176, "PQ": 7.186},
+]
+
+
+df = pd.DataFrame(data)
+
+# Convert PromptID to string for categorical processing
+# df["PromptID"] = df["PromptID"].astype(str)
+
+# Melt the data into long format for Seaborn
+df_long = df.melt(id_vars=["Version", "PromptID"], value_vars=["CE", "CU", "PC", "PQ"], var_name="Metric", value_name="Score")
+print(df_long.dtypes)
+df_long["Score"] = pd.to_numeric(df_long["Score"])
+# Plot
+sns.set_theme(style="whitegrid")
+plt.figure(figsize=(12, 6))
+
+# Strip plot with jitter to avoid overlap
+sns.stripplot(
+    data=df_long, x="Version", y="Score", hue="PromptID",
+    dodge=True, jitter=True, palette="tab10", alpha=0.6, size=8
+)
+
+# Overlay a point plot to show conditional means per Version
+sns.pointplot(
+    data=df_long, x="Version", y="Score", hue="PromptID",
+    dodge=0.8 - 0.8 / df_long["PromptID"].nunique(),
+    palette="dark", errorbar=None, markers="d", markersize=6, linestyle="none"
+)
+
+# Adjust legend
 plt.legend(title="PromptID", bbox_to_anchor=(1, 1), loc='upper left')
+
+plt.title("Meta Audiobox Metrics by Version and PromptID")
+plt.xlabel("Version")
+plt.ylabel("Score")
+
 plt.show()
