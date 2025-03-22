@@ -2,6 +2,7 @@ import json
 import os
 import numpy as np
 from collections import defaultdict
+from matplotlib.lines import Line2D
 
 def aggregate_scores(file_path):
     data = defaultdict(lambda: {"CE": [], "CU": [], "PC": [], "PQ": [], "paths": []})
@@ -107,7 +108,7 @@ df_long["Version"] = df_long["Version"].cat.set_categories(["Novice", "LoRA", "R
 df_long["PromptID"] = df_long["PromptID"].cat.set_categories(["1", "2", "3", "4", "5", "6"], ordered=True)
 df_long["Score"] = pd.to_numeric(df_long["Score"])
 
-def plot_metrics_by_promptid_facetgrid(df_long):
+def plot_metrics_by_promptid_facetgrid(df_long, save_path):
     sns.set_theme(style="whitegrid")
 
     # Initialize the catplot with boxplot as base:
@@ -123,7 +124,8 @@ def plot_metrics_by_promptid_facetgrid(df_long):
         whiskerprops={"linewidth": 1.2},
         medianprops={"color": "black", "linewidth": 2},
         dodge=True,
-        sharey=True  # use a consistent y-axis across subplots
+        sharey=True,  # use a consistent y-axis across subplots
+        legend=False
     )
 
     # Overlay stripplots on each subplot:
@@ -141,22 +143,34 @@ def plot_metrics_by_promptid_facetgrid(df_long):
             ax=ax,
             legend=False
         )
-        ax.set_title(f"{metric} by PromptID")
+        ax.set_title(f"{metric}")
 
     # Adjust y-axis and overall labels:
     g.set(ylim=(2, 10))
     g.set_axis_labels("PromptID", "Score")
-    g.figure.suptitle("Score Distributions by PromptID (per Metric)", fontsize=16)
+    g.figure.suptitle("Audiobox Scores by PromptID (Colored by Rewrite Version)", fontsize=16)
     g.figure.subplots_adjust(top=0.9)
-
+    versions = ["Novice", "LoRA", "RAG"]
+    palette = sns.color_palette("tab10", n_colors=len(versions))
+    legend_handles = [
+        Line2D([0], [0], marker='o', color='w', label=version,
+               markerfacecolor=palette[i], markersize=10)
+        for i, version in enumerate(versions)
+    ]
+    
+    # Add the combined legend to the overall figure.
+    legend = g.figure.legend(handles=legend_handles, labels=versions,
+                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
+    legend.set_title("Version")
+    plt.savefig(save_path, bbox_inches='tight')
     # Display the plot
     plt.show()
 
-# Call the function with your long-format DataFrame:
-plot_metrics_by_promptid_facetgrid(df_long)
+# Pass the long-format DataFrame:
+plot_metrics_by_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_PromptID_plot")
 
 # marginalize promptID, Version across four score dimensions in facetgrid
-def plot_metrics_facetgrid(df_long):
+def plot_metrics_facetgrid(df_long, save_path):
     sns.set_theme(style="whitegrid")
 
     # Initialize the catplot with boxplot as base
@@ -172,7 +186,8 @@ def plot_metrics_facetgrid(df_long):
         whiskerprops={"linewidth": 1.2},
         medianprops={"color": "black", "linewidth": 2},
         dodge=True,
-        sharey=True  # consistent Y-axis 
+        sharey=True,  # consistent Y-axis 
+        legend=False
     )
 
     # Overlay stripplots on each subplot
@@ -188,16 +203,96 @@ def plot_metrics_facetgrid(df_long):
             alpha=0.6,
             size=6,
             ax=ax,
-            legend=False
+            legend = False
         )
-        ax.set_title(f"{metric} by Version")
+        ax.set_title(f"{metric}")
 
     # Set Y-axis range
     g.set(ylim=(2, 10))
     g.set_axis_labels("Version", "Score")
-    g.figure.suptitle("Score Distributions by Version (per Metric)", fontsize=16)
+    g.figure.suptitle("Audiobox Scores by Rewrite Version", fontsize=16)
     g.figure.subplots_adjust(top=0.9)
+    versions = ["Novice", "LoRA", "RAG"]
+    palette = sns.color_palette("tab10", n_colors=len(versions))
+    legend_handles = [
+        Line2D([0], [0], marker='o', color='w', label=version,
+               markerfacecolor=palette[i], markersize=10)
+        for i, version in enumerate(versions)
+    ]
+    
+    # Add the combined legend to the overall figure.
+    legend = g.figure.legend(handles=legend_handles, labels=versions,
+                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
+    legend.set_title("Version")
+    plt.savefig(save_path, bbox_inches='tight')
 
     plt.show()
 
-plot_metrics_facetgrid(df_long)
+plot_metrics_facetgrid(df_long, "analysis/figures/audiobox_collapsed_plot")
+# "In this plot, the diamond markers represent the means, while the jittered circular points represent the individual responses from each participant.""
+def plot_metrics_by_version_then_promptid_facetgrid(df_long, save_path):
+
+    sns.set_theme(style="whitegrid")
+    
+    # Create a catplot with x as Version (aggregated) and facet by Metric.
+    g = sns.catplot(
+        data=df_long,
+        x="Version", y="Score",
+        col="Metric", col_wrap=2,
+        hue="PromptID",  # Within each version, promptIDs are distinguished by color.
+        kind="box",  # Base plot as boxplot for summary statistics.
+        height=5, aspect=1,
+        showcaps=True,
+        boxprops={"alpha": 0.6},
+        whiskerprops={"linewidth": 1.2},
+        medianprops={"color": "black", "linewidth": 2},
+        dodge=True,
+        sharey=True,
+        legend=False
+    )
+    
+    # Overlay a stripplot to show individual data points.
+    for ax, metric in zip(g.axes.flatten(), df_long["Metric"].unique()):
+        sub_df = df_long[df_long["Metric"] == metric]
+        sns.stripplot(
+            data=sub_df,
+            x="Version", y="Score",
+            hue="PromptID",  # Color by PromptID.
+            dodge=True,
+            jitter=True,
+            alpha=0.6,
+            size=6,
+            ax=ax,
+            legend=False
+        )
+        ax.set_title(f"{metric}")
+    
+    # Adjust y-axis and overall labels.
+    g.set(ylim=(2, 10))
+    g.set_axis_labels("Version", "Score")
+    g.figure.suptitle("Audiobox Scores by Rewrite Version (Colored by PromptID)", fontsize=16)
+    g.figure.subplots_adjust(top=0.9)
+    
+    # Create one combined legend for the PromptID groups using dot markers.
+    prompt_ids = sorted(df_long["PromptID"].unique())  # Assumes six unique prompt IDs.
+    palette = sns.color_palette("tab10", n_colors=len(prompt_ids))
+    legend_handles = [
+        Line2D([0], [0], marker='o', color='w', label=pid,
+               markerfacecolor=palette[i], markersize=10)
+        for i, pid in enumerate(prompt_ids)
+    ]
+    
+    legend = g.figure.legend(
+        handles=legend_handles,
+        labels=prompt_ids,
+        loc="upper right",
+        ncol=3,
+        frameon=True,
+        columnspacing=1,
+        handletextpad=0
+    )
+    legend.set_title("PromptID")
+    
+    plt.savefig(save_path, bbox_inches='tight')
+    plt.show()
+plot_metrics_by_version_then_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_version_plot")

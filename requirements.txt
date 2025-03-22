@@ -9,3 +9,4 @@ laion_clap
 streamlit
 dotenv
 audiobox_aesthetics
+statsmodels
