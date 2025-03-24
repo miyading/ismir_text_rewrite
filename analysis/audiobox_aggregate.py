@@ -316,3 +316,34 @@ for metric in unique_metrics:
     print(f"Results for metric: {metric}")
     print(result.summary())
     print("\n")
+
+# Example randomness of the Diffusion process Prompt 5 Indie 
+data = pd.read_json('analysis/diffusion_variation.jsonl', lines=True)
+df = pd.DataFrame(data)
+
+# Extract version from the path assuming the version is the first token in the second part of the path
+df['version'] = df['path'].apply(lambda x: x.split('/')[1].split(' ')[0])
+
+# Set the custom order for versions
+version_order = ['Novice', 'LoRA', 'RAG']
+df['version'] = pd.Categorical(df['version'], categories=version_order, ordered=True)
+
+# Now when sort by version or plot, they will follow the order "Novice", "LoRA", "RAG"
+versions = df['version'].cat.categories.tolist()
+
+# Define score types
+score_types = ['CU', 'PC', 'PQ', 'CE']
+
+# Create boxplots for each score grouped by the custom version order
+fig, axes = plt.subplots(1, 4, figsize=(20, 5), sharey=True)
+for i, score in enumerate(score_types):
+    data_to_plot = [df[df['version'] == v][score] for v in version_order]
+    axes[i].boxplot(data_to_plot, labels=version_order)
+    axes[i].set_title(score)
+    axes[i].set_xlabel('Version')
+    if i == 0:
+        axes[i].set_ylabel('Score')
+
+plt.suptitle('Randomness of Diffusion Process Prompt 5 Scores by Rewrite Version', fontsize=16)
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+plt.show()
