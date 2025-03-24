@@ -178,26 +178,26 @@ for dim in dimensions:
 
     # B) 
     # Fit an OLS model: Score ~ Version
-    # result = smf.ols("Score ~ C(Version)", data=df_long).fit()
-    # # # Fit an OLS model: Score ~ Version * PromptID
-    # result_promptID = fit_fixed_effect_model(df_long)
-    # # # Fit a linear mixed model: Score ~ Version * PromptID + (1|PariticipantID)
-    # result_participantID = fit_mixed_model_promptID_participantID(df_long)
+    result = smf.ols("Score ~ C(Version)", data=df_long).fit()
+    # # Fit an OLS model: Score ~ Version * PromptID
+    result_promptID = fit_fixed_effect_model(df_long)
+    # # Fit a linear mixed model: Score ~ Version * PromptID + (1|PariticipantID)
+    result_participantID = fit_mixed_model_promptID_participantID(df_long)
 
     # result_test = fit_mixed_model_promptID(df_long)
 
     # # C) Print results
-    # print(f"=== {dim.capitalize()} Score ~ Version Model ===")
-    # print(result.summary())
-    # print("\n")
+    print(f"=== {dim.capitalize()} Score ~ Version Model ===")
+    print(result.summary())
+    print("\n")
 
-    # print(f"=== {dim.capitalize()} Score ~ Version * PromptID Model ===")
-    # print(result_promptID.summary())
-    # print("\n")
+    print(f"=== {dim.capitalize()} Score ~ Version * PromptID Model ===")
+    print(result_promptID.summary())
+    print("\n")
 
-    # print(f"=== {dim.capitalize()} Score ~ Version * PromptID + (1|ParticipantID) Model ===")
-    # print(result_participantID.summary())
-    # print("\n")
+    print(f"=== {dim.capitalize()} Score ~ Version * PromptID + (1|ParticipantID) Model ===")
+    print(result_participantID.summary())
+    print("\n")
 
     # print(f"=== {dim.capitalize()} Score ~  Model ===")
     # print(result_test.summary())

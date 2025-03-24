@@ -3,6 +3,7 @@ import os
 import numpy as np
 from collections import defaultdict
 from matplotlib.lines import Line2D
+import statsmodels.formula.api as smf
 
 def aggregate_scores(file_path):
     data = defaultdict(lambda: {"CE": [], "CU": [], "PC": [], "PQ": [], "paths": []})
@@ -55,8 +56,8 @@ file_path = "analysis/combined.jsonl"
 aggregated_results = aggregate_scores(file_path)
 
 # Print the aggregated results
-for result in aggregated_results:
-    print(json.dumps(result, indent=4))
+# for result in aggregated_results:
+#     print(json.dumps(result, indent=4))
 
 
 # Jittered Stript Plot for Meta Audiobox metric
@@ -97,11 +98,11 @@ with open(file_path, "r") as f:
 
 # Convert to a DataFrame
 df = pd.DataFrame(rows)
-print(df)
+# print(df)
 
 # Melt the data into long format for Seaborn
 df_long = df.melt(id_vars=["Version", "PromptID"], value_vars=["CU", "PC", "PQ", "CE"], var_name="Metric", value_name="Score")
-print(df_long.dtypes)
+# print(df_long.dtypes)
 df_long["Version"] = df_long["Version"].astype("category")
 df_long["PromptID"] = df_long["PromptID"].astype("category")
 df_long["Version"] = df_long["Version"].cat.set_categories(["Novice", "LoRA", "RAG"], ordered=True)
@@ -296,3 +297,22 @@ def plot_metrics_by_version_then_promptid_facetgrid(df_long, save_path):
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
 plot_metrics_by_version_then_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_version_plot")
+
+
+# Linear Model 
+unique_metrics = ["CE", "CU", "PC", "PQ"]
+results = {}
+for metric in unique_metrics:
+    # Subset the data for the current metric
+    subset = df_long[df_long["Metric"] == metric]
+    
+    # Fit the linear mixed-effects model
+    # Here, 'Score ~ Version' defines the fixed effects.
+    # 'groups=subset["PromptID"]' specifies that PromptID is the random effect grouping variable.
+    model = smf.mixedlm("Score ~ Version", subset, groups=subset["PromptID"])
+    result = model.fit()
+    
+    results[metric] = result
+    print(f"Results for metric: {metric}")
+    print(result.summary())
+    print("\n")
