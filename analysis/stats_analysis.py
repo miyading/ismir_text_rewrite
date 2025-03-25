@@ -233,6 +233,7 @@ def pivot_all_dimensions(df, dimensions):
 def plot_strip_point_collapsed_facetgrid(df_long, save_path):
 
     sns.set_theme(style="whitegrid")
+    palette = sns.color_palette("colorblind", n_colors=3)
     
     # Specify the desired facet order.
     facet_order = ["expertness", "musicality", "production", "preference"]
@@ -247,7 +248,7 @@ def plot_strip_point_collapsed_facetgrid(df_long, save_path):
         sns.stripplot(
             data=sub_df,
             x="Version", y="Score", hue="Version",dodge=False,
-            jitter=True, alpha=0.25, zorder=1, palette="tab10", size=8,
+            jitter=True, alpha=0.25, zorder=1, palette=palette, size=8,
             ax=ax, legend=False
         )
         # Calculate dodge spacing based on the number of Versions.
@@ -256,7 +257,7 @@ def plot_strip_point_collapsed_facetgrid(df_long, save_path):
         sns.pointplot(
             data=sub_df,
             x="Version", y="Score", hue="Version",
-            dodge=False, palette="dark", errorbar=None,
+            dodge=False, palette=palette, errorbar=None,
             markers="d", markersize=6, linestyle="none",
             ax=ax, legend=False
         )
@@ -265,12 +266,12 @@ def plot_strip_point_collapsed_facetgrid(df_long, save_path):
     # Set y-axis limits (for scores ranging from 1 to 3) and axis labels.
     g.set(ylim=(0.9, 3.1))
     g.set_axis_labels("Version", "Score")
-    g.figure.suptitle("Survey Scores by Rewrite Version", fontsize=16)
+    g.figure.suptitle("Survey Scores across Rewrite Versions", fontsize=16)
     g.figure.subplots_adjust(top=0.9, left =0.1)
     
     # Create one combined legend for all facets.
     versions = ["Novice", "LoRA", "RAG"]
-    palette = sns.color_palette("tab10", n_colors=len(versions))
+    # palette = sns.color_palette("tab10", n_colors=len(versions))
     legend_handles = [
         Line2D([0], [0], marker='o', color='w', label=version,
                markerfacecolor=palette[i], markersize=10)
@@ -287,6 +288,7 @@ def plot_strip_point_collapsed_facetgrid(df_long, save_path):
 def plot_strip_point_by_dimension(df_long, save_path):
 
     sns.set_theme(style="whitegrid")
+    palette = sns.color_palette("colorblind", n_colors=6)
      # desired order for the Dimension facets
     facet_order = ["expertness", "musicality", "production", "preference"]
     
@@ -302,9 +304,9 @@ def plot_strip_point_by_dimension(df_long, save_path):
         sns.stripplot(
             data=sub_df,
             x="Version", y="Score", hue="PromptID",
-            dodge=True, jitter=True, alpha=0.25, zorder=1,
-            palette="tab10", size=8,
-            ax=ax, legend= False
+            dodge=True, jitter=True, alpha=0.25, zorder=1, size=8,
+            ax=ax, legend= False,
+            palette=palette
         )
         # Overlay the pointplot to show conditional means
         # (Using global df_long to compute the number of unique PromptIDs)
@@ -312,10 +314,10 @@ def plot_strip_point_by_dimension(df_long, save_path):
         sns.pointplot(
             data=sub_df,
             x="Version", y="Score", hue="PromptID",
-            dodge=dodge_val,
-            palette="dark", errorbar=None,
+            dodge=dodge_val, errorbar=None,
             markers="d", markersize=6, linestyle="none",
-            ax=ax, legend=False
+            ax=ax, legend=False, 
+            palette=palette
         )
         # Adjust legend placement for this facet (if a legend exists)
         # sns.move_legend(ax, loc="lower right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
@@ -323,10 +325,10 @@ def plot_strip_point_by_dimension(df_long, save_path):
     
     g.set(ylim=(0.9, 3.1))
     g.set_axis_labels("Version", "Score")
-    g.figure.suptitle("Survey Scores by Rewrite Version (Colored by PromptID)", fontsize=16)
+    g.figure.suptitle("Survey Scores by PromptID across Rewrite Versions", fontsize=16)
     g.figure.subplots_adjust(top=0.9, left = 0.1)
     ids = ["1", "2", "3", "4", "5", "6"]
-    palette = sns.color_palette("tab10", n_colors=len(ids))
+    # palette = sns.color_palette("tab10", n_colors=len(ids))
     legend_handles = [
         Line2D([0], [0], marker='o', color='w', label=promptid,
                markerfacecolor=palette[i], markersize=10)
@@ -342,7 +344,7 @@ def plot_strip_point_by_dimension(df_long, save_path):
 def plot_strip_point_by_promptID_facetgrid(df_long, save_path):
 
     sns.set_theme(style="whitegrid")
-
+    palette = sns.color_palette("colorblind", n_colors=3)
     # desired order for the Dimension facets
     facet_order = ["expertness", "musicality", "production", "preference"]
     
@@ -364,9 +366,9 @@ def plot_strip_point_by_promptID_facetgrid(df_long, save_path):
             jitter=True, 
             alpha=0.25, 
             zorder=1, 
-            palette="tab10", 
+            # palette="tab10", 
             size=8,
-            ax=ax, legend=False
+            ax=ax, legend=False, palette=palette
         )
         
         # Compute dodge value based on the number of unique Versions
@@ -379,24 +381,25 @@ def plot_strip_point_by_promptID_facetgrid(df_long, save_path):
             y="Score", 
             hue="Version",
             dodge=dodge_val,
-            palette="dark", 
+            # palette="dark", 
             errorbar=None, 
             markers="d", 
             markersize=6, 
             linestyle="none", 
             ax=ax,
-            legend=False
+            legend=False, 
+            palette=palette
         )
         ax.set_title(f"{dim.capitalize()}")
     
     # Set y-axis limits to suit scores in the 1 to 3 range
     g.set(ylim=(0.9, 3.1))
     g.set_axis_labels("PromptID", "Score")
-    g.figure.suptitle("Survey Scores by PromptID (Colored by Rewrite Version)", fontsize=16)
+    g.figure.suptitle("Survey Scores by Rewrite Version across PromptIDs", fontsize=16)
     g.figure.subplots_adjust(top=0.9, left=0.1)
 
     versions = ["Novice", "LoRA", "RAG"]
-    palette = sns.color_palette("tab10", n_colors=len(versions))
+    # palette = sns.color_palette("tab10", n_colors=len(versions))
     
     legend_handles = [
         Line2D([0], [0], marker='o', color='w', label=version,
