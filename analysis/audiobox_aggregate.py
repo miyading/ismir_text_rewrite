@@ -109,6 +109,9 @@ df_long["Version"] = df_long["Version"].cat.set_categories(["Novice", "LoRA", "R
 df_long["PromptID"] = df_long["PromptID"].cat.set_categories(["1", "2", "3", "4", "5", "6"], ordered=True)
 df_long["Score"] = pd.to_numeric(df_long["Score"])
 
+# scaling from 1-10 Audiobox Results range to 1-3 Survey Results range
+df_long["Score"] = ((df_long["Score"] - 1) / 9) * 2 + 1
+
 def plot_metrics_by_promptid_facetgrid(df_long, save_path):
     sns.set_theme(style="whitegrid")
     # Use a colorblind friendly palette for the boxplots
@@ -150,7 +153,7 @@ def plot_metrics_by_promptid_facetgrid(df_long, save_path):
         ax.set_title(f"{metric}")
 
     # Adjust y-axis and overall labels:
-    g.set(ylim=(2, 10))
+    g.set(ylim=(0.9,3.1))
     g.set_axis_labels("PromptID", "Score")
     g.figure.suptitle("Audiobox Scores by Rewrite Version across PromptIDs", fontsize=16)
     g.figure.subplots_adjust(top=0.9)
@@ -214,7 +217,7 @@ def plot_metrics_facetgrid(df_long, save_path):
         ax.set_title(f"{metric}")
 
     # Set Y-axis range
-    g.set(ylim=(2, 10))
+    g.set(ylim=(0.9,3.1))
     g.set_axis_labels("Version", "Score")
     g.figure.suptitle("Audiobox Scores across Rewrite Versions", fontsize=16)
     g.figure.subplots_adjust(top=0.9)
@@ -277,7 +280,7 @@ def plot_metrics_by_version_then_promptid_facetgrid(df_long, save_path):
         ax.set_title(f"{metric}")
     
     # Adjust y-axis and overall labels.
-    g.set(ylim=(2, 10))
+    g.set(ylim=(0.9, 3.1))
     g.set_axis_labels("Version", "Score")
     g.figure.suptitle("Audiobox Scores by PromptID across Rewrite Versions", fontsize=16)
     g.figure.subplots_adjust(top=0.9)
@@ -325,6 +328,20 @@ for metric in unique_metrics:
     print(result.summary())
     print("\n")
 
+# OLS for audiobox, PromptID as fixed effect
+results = {}
+for metric in unique_metrics:
+    # Subset the data for the current metric
+    subset = df_long[df_long["Metric"] == metric]
+    
+    model = smf.ols("Score ~ C(Version) * C(PromptID)", data=subset)
+    result = model.fit()
+    
+    results[metric] = result
+    print(f"Results for metric: {metric}")
+    print(result.summary())
+    print("\n")
+
 # Example randomness of the Diffusion process Prompt 5 Indie 
 data = pd.read_json('analysis/diffusion_variation.jsonl', lines=True)
 df = pd.DataFrame(data)
@@ -341,7 +358,8 @@ versions = df['version'].cat.categories.tolist()
 
 # Define score types
 score_types = ['CU', 'PC', 'PQ', 'CE']
-
+for score in score_types:
+    df[score] = ((df[score] - 1) / 9) * 2 + 1
 # Create boxplots for each score grouped by the custom version order
 fig, axes = plt.subplots(1, 4, figsize=(20, 5), sharey=True)
 for i, score in enumerate(score_types):
