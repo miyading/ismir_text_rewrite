@@ -114,6 +114,7 @@ df_long["Score"] = ((df_long["Score"] - 1) / 9) * 2 + 1
 
 def plot_metrics_by_promptid_facetgrid(df_long, save_path):
     sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
     # Use a colorblind friendly palette for the boxplots
     palette = sns.color_palette("colorblind", n_colors=3)
     # Initialize the catplot with boxplot as base:
@@ -155,7 +156,7 @@ def plot_metrics_by_promptid_facetgrid(df_long, save_path):
     # Adjust y-axis and overall labels:
     g.set(ylim=(0.9,3.1))
     g.set_axis_labels("PromptID", "Score")
-    g.figure.suptitle("Audiobox Scores by Rewrite Version across PromptIDs", fontsize=16)
+    g.figure.suptitle("Audiobox Scores by Rewrite Version across PromptIDs", fontsize=14)
     g.figure.subplots_adjust(top=0.9)
     versions = ["Novice", "LoRA", "RAG"]
     # palette = sns.color_palette("tab10", n_colors=len(versions))
@@ -167,8 +168,9 @@ def plot_metrics_by_promptid_facetgrid(df_long, save_path):
     
     # Add the combined legend to the overall figure.
     legend = g.figure.legend(handles=legend_handles, labels=versions,
-                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
+                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0, prop={'size': 11})
     legend.set_title("Version")
+    legend.get_title().set_fontsize(11)
     plt.savefig(save_path, bbox_inches='tight')
     # Display the plot
     plt.show()
@@ -179,6 +181,7 @@ plot_metrics_by_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_Prompt
 # marginalize promptID, Version across four score dimensions in facetgrid
 def plot_metrics_facetgrid(df_long, save_path):
     sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
     palette = sns.color_palette("colorblind", n_colors=3)
     # Initialize the catplot with boxplot as base
     g = sns.catplot(
@@ -231,8 +234,9 @@ def plot_metrics_facetgrid(df_long, save_path):
     
     # Add the combined legend to the overall figure.
     legend = g.figure.legend(handles=legend_handles, labels=versions,
-                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
+                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0, prop={'size': 11})
     legend.set_title("Version")
+    legend.get_title().set_fontsize(11)
     plt.savefig(save_path, bbox_inches='tight')
 
     plt.show()
@@ -242,6 +246,7 @@ plot_metrics_facetgrid(df_long, "analysis/figures/audiobox_collapsed_plot")
 def plot_metrics_by_version_then_promptid_facetgrid(df_long, save_path):
 
     sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
     palette = sns.color_palette("colorblind", n_colors=6)
     
     # Create a catplot with x as Version (aggregated) and facet by Metric.
@@ -301,10 +306,10 @@ def plot_metrics_by_version_then_promptid_facetgrid(df_long, save_path):
         ncol=3,
         frameon=True,
         columnspacing=1,
-        handletextpad=0
+        handletextpad=0, prop={'size': 10}
     )
     legend.set_title("PromptID")
-    
+    legend.get_title().set_fontsize(11)
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
 plot_metrics_by_version_then_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_version_plot")
@@ -341,36 +346,134 @@ for metric in unique_metrics:
     print(f"Results for metric: {metric}")
     print(result.summary())
     print("\n")
-
+    
 # Example randomness of the Diffusion process Prompt 5 Indie 
+# Load data
 data = pd.read_json('analysis/diffusion_variation.jsonl', lines=True)
 df = pd.DataFrame(data)
 
-# Extract version from the path assuming the version is the first token in the second part of the path
-df['version'] = df['path'].apply(lambda x: x.split('/')[1].split(' ')[0])
+# Load data
+data = pd.read_json('analysis/diffusion_variation.jsonl', lines=True)
+df = pd.DataFrame(data)
 
-# Set the custom order for versions
+# Extract version from path
+df['Version'] = df['path'].apply(lambda x: x.split('/')[1].split(' ')[0])
 version_order = ['Novice', 'LoRA', 'RAG']
-df['version'] = pd.Categorical(df['version'], categories=version_order, ordered=True)
+df['Version'] = pd.Categorical(df['Version'], categories=version_order, ordered=True)
 
-# Now when sort by version or plot, they will follow the order "Novice", "LoRA", "RAG"
-versions = df['version'].cat.categories.tolist()
-
-# Define score types
+# Normalize scores to [1, 3]
 score_types = ['CU', 'PC', 'PQ', 'CE']
 for score in score_types:
     df[score] = ((df[score] - 1) / 9) * 2 + 1
-# Create boxplots for each score grouped by the custom version order
-fig, axes = plt.subplots(1, 4, figsize=(20, 5), sharey=True)
-for i, score in enumerate(score_types):
-    data_to_plot = [df[df['version'] == v][score] for v in version_order]
-    axes[i].boxplot(data_to_plot, labels=version_order)
-    axes[i].set_title(score)
-    axes[i].set_xlabel('Version')
-    if i == 0:
-        axes[i].set_ylabel('Score')
 
-plt.suptitle('Randomness of Diffusion Process PromptID:5 Scores across Rewrite Versions', fontsize=16)
-plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-plt.style.use('tableau-colorblind10')
+# Melt into long-form
+df_long = df.melt(id_vars=['Version'], value_vars=score_types,
+                  var_name='Metric', value_name='Score')
+
+# Order metrics on y-axis
+metric_order = ['CU', 'PC', 'PQ', 'CE']
+df_long['Metric'] = pd.Categorical(df_long['Metric'], categories=metric_order, ordered=True)
+
+# Set style
+sns.set_theme(style="whitegrid")
+sns.set_context("talk")
+palette = sns.color_palette("colorblind", n_colors=3)
+
+# Create figure
+plt.figure(figsize=(10, 6))
+ax = plt.gca()
+sns.despine(bottom=True, left=True)
+
+# Boxplot
+sns.boxplot(
+    data=df_long,
+    x="Score", y="Metric", hue="Version",
+    palette=palette, dodge=True, showcaps=True,
+    boxprops={"alpha": 0.6},
+    whiskerprops={"linewidth": 1.2},
+    medianprops={"color": "black", "linewidth": 2},
+    fliersize=0,
+)
+
+# Stripplot overlay
+sns.stripplot(
+    data=df_long,
+    x="Score", y="Metric", hue="Version",
+    dodge=True, jitter=0.25, alpha=0.5,
+    size=5, palette=palette,
+    marker="o", linewidth=0,
+)
+
+# Clean up duplicated legends from both plots
+handles, labels = ax.get_legend_handles_labels()
+by_label = dict(zip(labels, handles))
+ax.legend(
+    by_label.values(), by_label.keys(),
+    title="Version", loc="lower left", ncol=3,
+    frameon=True, columnspacing=1, handletextpad=0, prop={'size': 11}
+)
+ax.get_legend().get_title().set_fontsize(13)
+
+# Set axis labels and title
+ax.set_xlim(0.9, 3.1)
+ax.set_xlabel("Score")
+ax.set_ylabel("Metric")
+ax.set_title("Diffusion Randomness PromptID:5", fontsize=16)
+
+plt.tight_layout()
+plt.savefig("analysis/figures/diffusion_randomness.png", bbox_inches='tight')
 plt.show()
+
+def plot_metrics_flat(df_long, save_path):
+    sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
+    palette = sns.color_palette("colorblind", n_colors=3)
+
+    # Make sure Metric is ordered
+    metric_order = ["CU", "PC", "PQ", "CE"]
+    df_long["Metric"] = pd.Categorical(df_long["Metric"], categories=metric_order, ordered=True)
+
+    plt.figure(figsize=(10, 6))
+    ax = plt.gca()
+    sns.despine(bottom=True, left=True)
+
+    # Boxplot first
+    sns.boxplot(
+        data=df_long,
+        x="Score", y="Metric", hue="Version",
+        palette=palette, dodge=True, showcaps=True,
+        boxprops={"alpha": 0.6},
+        whiskerprops={"linewidth": 1.2},
+        medianprops={"color": "black", "linewidth": 2},
+        fliersize=0,
+    )
+
+    # Overlay stripplot
+    sns.stripplot(
+        data=df_long,
+        x="Score", y="Metric", hue="Version",
+        dodge=True, jitter=0.25, alpha=0.5,
+        size=5, palette=palette,
+        marker="o", linewidth=0,
+    )
+
+    # Handle duplicated legends from both plots
+    handles, labels = ax.get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    ax.legend(
+        by_label.values(), by_label.keys(),
+        title="Version", loc="lower left", ncol=3,
+        frameon=True, columnspacing=1, handletextpad=0, prop={'size': 11}
+    )
+    ax.get_legend().get_title().set_fontsize(13)
+
+    ax.set_xlim(0.9, 3.1)
+    ax.set_xlabel("Score")
+    ax.set_ylabel("Metric")
+    ax.set_title("Audiobox Scores across Rewrite Versions", fontsize=16)
+
+    plt.tight_layout()
+    plt.savefig(save_path, bbox_inches='tight')
+    plt.show()
+
+plot_metrics_flat(df_long, "analysis/figures/audiobox_irislike_plot")

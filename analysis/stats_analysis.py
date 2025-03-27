@@ -179,14 +179,14 @@ for dim in dimensions:
     # B) 
     # Fit an OLS model: Score ~ Version
     result = smf.ols("Score ~ C(Version)", data=df_long).fit()
-    # # Fit an OLS model: Score ~ Version * PromptID
+    # Fit an OLS model: Score ~ Version * PromptID
     result_promptID = fit_fixed_effect_model(df_long)
-    # # Fit a linear mixed model: Score ~ Version * PromptID + (1|PariticipantID)
+    # Fit a linear mixed model: Score ~ Version * PromptID + (1|PariticipantID)
     result_participantID = fit_mixed_model_promptID_participantID(df_long)
 
     # result_test = fit_mixed_model_promptID(df_long)
 
-    # # C) Print results
+    # C) Print results
     print(f"=== {dim.capitalize()} Score ~ Version Model ===")
     print(result.summary())
     print("\n")
@@ -195,9 +195,9 @@ for dim in dimensions:
     print(result_promptID.summary())
     print("\n")
 
-    print(f"=== {dim.capitalize()} Score ~ Version * PromptID + (1|ParticipantID) Model ===")
-    print(result_participantID.summary())
-    print("\n")
+    # print(f"=== {dim.capitalize()} Score ~ Version * PromptID + (1|ParticipantID) Model ===")
+    # print(result_participantID.summary())
+    # print("\n")
 
     # print(f"=== {dim.capitalize()} Score ~  Model ===")
     # print(result_test.summary())
@@ -233,6 +233,7 @@ def pivot_all_dimensions(df, dimensions):
 def plot_strip_point_collapsed_facetgrid(df_long, save_path):
 
     sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
     palette = sns.color_palette("colorblind", n_colors=3)
     
     # Specify the desired facet order.
@@ -248,7 +249,7 @@ def plot_strip_point_collapsed_facetgrid(df_long, save_path):
         sns.stripplot(
             data=sub_df,
             x="Version", y="Score", hue="Version",dodge=False,
-            jitter=True, alpha=0.25, zorder=1, palette=palette, size=8,
+            jitter=0.2, alpha=0.25, zorder=1, palette=palette, size=8,
             ax=ax, legend=False
         )
         # Calculate dodge spacing based on the number of Versions.
@@ -280,14 +281,16 @@ def plot_strip_point_collapsed_facetgrid(df_long, save_path):
     
     # Add the combined legend to the overall figure.
     legend = g.figure.legend(handles=legend_handles, labels=versions,
-                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
+                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0, prop={'size': 11})
     legend.set_title("Version")
+    legend.get_title().set_fontsize(13)
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
 
 def plot_strip_point_by_dimension(df_long, save_path):
 
     sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
     palette = sns.color_palette("colorblind", n_colors=6)
      # desired order for the Dimension facets
     facet_order = ["expertness", "musicality", "production", "preference"]
@@ -304,7 +307,7 @@ def plot_strip_point_by_dimension(df_long, save_path):
         sns.stripplot(
             data=sub_df,
             x="Version", y="Score", hue="PromptID",
-            dodge=True, jitter=True, alpha=0.25, zorder=1, size=8,
+            dodge=True, jitter=0.2, alpha=0.25, zorder=1, size=8,
             ax=ax, legend= False,
             palette=palette
         )
@@ -336,14 +339,16 @@ def plot_strip_point_by_dimension(df_long, save_path):
     ]
     
     legend = g.figure.legend(handles=legend_handles, labels=ids,
-                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
+                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0, prop={'size': 10})
     legend.set_title("PromptID")
+    legend.get_title().set_fontsize(11)
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
 
 def plot_strip_point_by_promptID_facetgrid(df_long, save_path):
 
     sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
     palette = sns.color_palette("colorblind", n_colors=3)
     # desired order for the Dimension facets
     facet_order = ["expertness", "musicality", "production", "preference"]
@@ -363,7 +368,7 @@ def plot_strip_point_by_promptID_facetgrid(df_long, save_path):
             y="Score", 
             hue="Version",
             dodge=True, 
-            jitter=True, 
+            jitter=0.2, 
             alpha=0.25, 
             zorder=1, 
             # palette="tab10", 
@@ -395,7 +400,7 @@ def plot_strip_point_by_promptID_facetgrid(df_long, save_path):
     # Set y-axis limits to suit scores in the 1 to 3 range
     g.set(ylim=(0.9, 3.1))
     g.set_axis_labels("PromptID", "Score")
-    g.figure.suptitle("Survey Scores by Rewrite Version across PromptIDs", fontsize=16)
+    g.figure.suptitle("Survey Scores by Rewrite Version across PromptIDs", fontsize=14)
     g.figure.subplots_adjust(top=0.9, left=0.1)
 
     versions = ["Novice", "LoRA", "RAG"]
@@ -407,8 +412,9 @@ def plot_strip_point_by_promptID_facetgrid(df_long, save_path):
         for i, version in enumerate(versions)
     ]
     legend = g.figure.legend(handles=legend_handles, labels=versions,
-                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0)
+                 loc="upper right", ncol=3, frameon=True, columnspacing=1, handletextpad=0,prop={'size': 11})
     legend.set_title("Version")
+    legend.get_title().set_fontsize(13)
     
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
