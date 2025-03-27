@@ -346,12 +346,61 @@ for metric in unique_metrics:
     print(f"Results for metric: {metric}")
     print(result.summary())
     print("\n")
-    
-# Example randomness of the Diffusion process Prompt 5 Indie 
-# Load data
-data = pd.read_json('analysis/diffusion_variation.jsonl', lines=True)
-df = pd.DataFrame(data)
 
+def plot_metrics_flat(df_long, save_path):
+    sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
+    palette = sns.color_palette("colorblind", n_colors=3)
+
+    # Make sure Metric is ordered
+    metric_order = ["CU", "PC", "PQ", "CE"]
+    df_long["Metric"] = pd.Categorical(df_long["Metric"], categories=metric_order, ordered=True)
+
+    plt.figure(figsize=(10, 6))
+    ax = plt.gca()
+    sns.despine(bottom=True, left=True)
+
+    # Boxplot first
+    sns.boxplot(
+        data=df_long,
+        x="Score", y="Metric", hue="Version",
+        palette=palette, dodge=True, showcaps=True,
+        boxprops={"alpha": 0.6},
+        whiskerprops={"linewidth": 1.2},
+        medianprops={"color": "black", "linewidth": 2},
+        fliersize=0,
+    )
+
+    # Overlay stripplot
+    sns.stripplot(
+        data=df_long,
+        x="Score", y="Metric", hue="Version",
+        dodge=True, jitter=0.25, alpha=0.5,
+        size=5, palette=palette,
+        marker="o", linewidth=0,
+    )
+
+    # Handle duplicated legends from both plots
+    handles, labels = ax.get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    ax.legend(
+        by_label.values(), by_label.keys(),
+        title="Version", loc="lower left", ncol=3,
+        frameon=True, columnspacing=1, handletextpad=0, prop={'size': 11}
+    )
+    ax.get_legend().get_title().set_fontsize(13)
+
+    ax.set_xlim(0.9, 3.1)
+    ax.set_xlabel("Score")
+    ax.set_ylabel("Metric")
+    ax.set_title("Audiobox Scores across Rewrite Versions", fontsize=16)
+
+    plt.tight_layout()
+    plt.savefig(save_path, bbox_inches='tight')
+    plt.show()
+
+plot_metrics_flat(df_long, "analysis/figures/audiobox_irislike_plot")
+# Example randomness of the Diffusion process Prompt 5 Indie 
 # Load data
 data = pd.read_json('analysis/diffusion_variation.jsonl', lines=True)
 df = pd.DataFrame(data)
@@ -423,57 +472,3 @@ ax.set_title("Diffusion Randomness PromptID:5", fontsize=16)
 plt.tight_layout()
 plt.savefig("analysis/figures/diffusion_randomness.png", bbox_inches='tight')
 plt.show()
-
-def plot_metrics_flat(df_long, save_path):
-    sns.set_theme(style="whitegrid")
-    sns.set_context("talk")
-    palette = sns.color_palette("colorblind", n_colors=3)
-
-    # Make sure Metric is ordered
-    metric_order = ["CU", "PC", "PQ", "CE"]
-    df_long["Metric"] = pd.Categorical(df_long["Metric"], categories=metric_order, ordered=True)
-
-    plt.figure(figsize=(10, 6))
-    ax = plt.gca()
-    sns.despine(bottom=True, left=True)
-
-    # Boxplot first
-    sns.boxplot(
-        data=df_long,
-        x="Score", y="Metric", hue="Version",
-        palette=palette, dodge=True, showcaps=True,
-        boxprops={"alpha": 0.6},
-        whiskerprops={"linewidth": 1.2},
-        medianprops={"color": "black", "linewidth": 2},
-        fliersize=0,
-    )
-
-    # Overlay stripplot
-    sns.stripplot(
-        data=df_long,
-        x="Score", y="Metric", hue="Version",
-        dodge=True, jitter=0.25, alpha=0.5,
-        size=5, palette=palette,
-        marker="o", linewidth=0,
-    )
-
-    # Handle duplicated legends from both plots
-    handles, labels = ax.get_legend_handles_labels()
-    by_label = dict(zip(labels, handles))
-    ax.legend(
-        by_label.values(), by_label.keys(),
-        title="Version", loc="lower left", ncol=3,
-        frameon=True, columnspacing=1, handletextpad=0, prop={'size': 11}
-    )
-    ax.get_legend().get_title().set_fontsize(13)
-
-    ax.set_xlim(0.9, 3.1)
-    ax.set_xlabel("Score")
-    ax.set_ylabel("Metric")
-    ax.set_title("Audiobox Scores across Rewrite Versions", fontsize=16)
-
-    plt.tight_layout()
-    plt.savefig(save_path, bbox_inches='tight')
-    plt.show()
-
-plot_metrics_flat(df_long, "analysis/figures/audiobox_irislike_plot")
