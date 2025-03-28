@@ -3,7 +3,7 @@
 
 [**Dataset**](data) | [**Paper**]()
 
-This repository contains the official evaluation code and dataset for the paper  
+This repository contains the code and dataset used for the paper  
 **"Enhancing Text-to-Music Generation through Retrieval-Augmented Prompt Rewrite."**
 
 <p align="center">
@@ -55,9 +55,9 @@ streamlit run scripts/streamlit_app.py
 
 ---
 
-## ▶️ Play with the Streamlit App
+## Play with the Streamlit App
 
-1. **Enter the Random Number**
+1. **Enter a Random Number**
 
    This is used as an anonymous identifier instead of your real name.
 
