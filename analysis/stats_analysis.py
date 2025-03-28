@@ -182,7 +182,7 @@ for dim in dimensions:
     # Fit an OLS model: Score ~ Version * PromptID
     result_promptID = fit_fixed_effect_model(df_long)
     # Fit a linear mixed model: Score ~ Version * PromptID + (1|PariticipantID)
-    result_participantID = fit_mixed_model_promptID_participantID(df_long)
+    # result_participantID = fit_mixed_model_promptID_participantID(df_long)
 
     # result_test = fit_mixed_model_promptID(df_long)
 
@@ -286,6 +286,7 @@ def plot_strip_point_collapsed_facetgrid(df_long, save_path):
     legend.get_title().set_fontsize(13)
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
+
 
 def plot_strip_point_by_dimension(df_long, save_path):
 
@@ -426,7 +427,119 @@ df_long_all = pivot_all_dimensions(df, dimensions)
 df_long_all["Version"] = df_long_all["Version"].astype("category")
 df_long_all["Version"] = df_long_all["Version"].cat.set_categories(["Novice", "LoRA", "RAG"], ordered=True)
 
+from matplotlib.patches import Patch
+
+def plot_stacked_bar_facet_per_dimension(df_long, save_path):
+    sns.set_theme(style="whitegrid")
+    sns.set_context("talk")
+
+    # Set colorblind-friendly palette
+    colorblind_palette = sns.color_palette("colorblind")
+    score_order = [1, 2, 3]
+    score_palette = {score: colorblind_palette[i] for i, score in enumerate(score_order)}
+    legend_labels = {1: " = 1", 2: " = 2", 3: " = 3"}
+
+    # Capitalize dimension names
+    df_long["Dimension"] = df_long["Dimension"].str.capitalize()
+    dimension_order = ["Expertness", "Musicality", "Production", "Preference"]
+    df_long["Dimension"] = pd.Categorical(df_long["Dimension"], categories=dimension_order, ordered=True)
+
+    df_long["Score"] = df_long["Score"].astype(int)
+
+    # Group counts for stacking
+    count_df = df_long.groupby(["Dimension", "Version", "Score"], observed=False).size().reset_index(name="Count")
+
+    # Compute means for annotation
+    mean_df = df_long.groupby(["Dimension", "Version"], observed=False)["Score"].mean().reset_index()
+    mean_df["MeanScoreLabel"] = mean_df["Score"].round(2).astype(str)
+
+    # Pivot and melt for plotting
+    pivot_df = count_df.pivot_table(
+        index=["Dimension", "Version"], columns="Score", values="Count", fill_value=0, observed=False
+    ).reset_index()
+
+    melted_df = pivot_df.melt(id_vars=["Dimension", "Version"], value_vars=score_order,
+                              var_name="Score", value_name="Count")
+    melted_df["Score"] = melted_df["Score"].astype(int)
+
+    # FacetGrid setup
+    g = sns.FacetGrid(
+        melted_df,
+        col="Dimension",
+        col_wrap=2,
+        height=5,
+        sharey=True
+    )
+
+    def facet_bar(data, **kwargs):
+        ax = plt.gca()
+        width = 0.5
+        versions = data["Version"].unique()
+        bottom = pd.Series(0, index=versions)
+
+        for score in score_order:
+            subset = data[data["Score"] == score]
+            bars = ax.bar(
+                subset["Version"],
+                subset["Count"],
+                bottom=bottom[subset["Version"]].values,
+                color=score_palette[score],
+                width=width,
+                label=legend_labels[score]
+            )
+            # Annotate counts
+            for bar in bars:
+                height = bar.get_height()
+                if height > 0:
+                    ax.annotate(
+                        f"{int(height)}",
+                        xy=(bar.get_x() + bar.get_width() / 2, bar.get_y() + height / 2),
+                        ha='center', va='center',
+                        fontsize=10, color="black"
+                    )
+            bottom[subset["Version"]] += subset["Count"].values
+
+        # Add mean annotations
+        dim = data["Dimension"].iloc[0]
+        dim_mean_df = mean_df[mean_df["Dimension"] == dim]
+        for _, row in dim_mean_df.iterrows():
+            version = row["Version"]
+            mean_score = row["Score"]
+            label = f"Mean = {mean_score:.2f}"
+            y = bottom[version]  # top of the stacked bar
+            ax.text(
+                x=version,
+                y=y + 1,  # slightly above the bar
+                s=label,
+                ha="center",
+                va="bottom",
+                fontsize=11,
+                fontweight="bold"
+            )
+
+    g.map_dataframe(facet_bar)
+
+    g.set_axis_labels("Version", "Count of Scores")
+    g.set_titles("{col_name}")
+    g.figure.suptitle("Stacked Distribution of Survey Scores by Dimension")
+
+    # Custom colorblind legend
+    legend_handles = [
+        Patch(color=score_palette[score], label=f"Score{legend_labels[score]}") for score in score_order
+    ]
+    g.figure.legend(
+        handles=legend_handles, title= "Survey Score", loc="upper right",prop={'size': 11},fontsize=12,
+    )
+
+    # Layout & Save
+    g.figure.subplots_adjust(left=0.12, right=0.95, top=0.88, bottom=0.1)
+    g.figure.set_size_inches(12, 10)
+    plt.savefig(save_path, bbox_inches="tight", dpi=300)
+    plt.show()
+
 # Plot the faceted strip-and-point plot:
-plot_strip_point_collapsed_facetgrid(df_long_all, "analysis/figures/survey_collapsed_plot.png")
-plot_strip_point_by_dimension(df_long_all,"analysis/figures/survey_by_version_plot.png")
-plot_strip_point_by_promptID_facetgrid(df_long_all,"analysis/figures/survey_by_PromptID_plot.png")
+
+plot_strip_point_collapsed_facetgrid(df_long_all, "analysis/figures/survey_collapsed_plot.pdf")
+plot_strip_point_by_dimension(df_long_all,"analysis/figures/survey_by_version_plot.pdf")
+plot_strip_point_by_promptID_facetgrid(df_long_all,"analysis/figures/survey_by_PromptID_plot.pdf")
+plot_stacked_bar_facet_per_dimension(df_long_all, "analysis/figures/survey_stackedbar_plot.pdf")

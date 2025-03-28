@@ -176,7 +176,7 @@ def plot_metrics_by_promptid_facetgrid(df_long, save_path):
     plt.show()
 
 # Pass the long-format DataFrame:
-plot_metrics_by_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_PromptID_plot")
+plot_metrics_by_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_PromptID_plot.pdf")
 
 # marginalize promptID, Version across four score dimensions in facetgrid
 def plot_metrics_facetgrid(df_long, save_path):
@@ -241,7 +241,7 @@ def plot_metrics_facetgrid(df_long, save_path):
 
     plt.show()
 
-plot_metrics_facetgrid(df_long, "analysis/figures/audiobox_collapsed_plot")
+plot_metrics_facetgrid(df_long, "analysis/figures/audiobox_collapsed_plot.pdf")
 # "In this plot, the diamond markers represent the means, while the jittered circular points represent the individual responses from each participant.""
 def plot_metrics_by_version_then_promptid_facetgrid(df_long, save_path):
 
@@ -312,7 +312,7 @@ def plot_metrics_by_version_then_promptid_facetgrid(df_long, save_path):
     legend.get_title().set_fontsize(11)
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
-plot_metrics_by_version_then_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_version_plot")
+plot_metrics_by_version_then_promptid_facetgrid(df_long, "analysis/figures/audiobox_by_version_plot.pdf")
 
 
 # Linear Model 
@@ -393,13 +393,13 @@ def plot_metrics_flat(df_long, save_path):
     ax.set_xlim(0.9, 3.1)
     ax.set_xlabel("Score")
     ax.set_ylabel("Metric")
-    ax.set_title("Audiobox Scores across Rewrite Versions", fontsize=16)
+    ax.set_title("Audiobox Scores across Rewrite Versions")
 
     plt.tight_layout()
     plt.savefig(save_path, bbox_inches='tight')
     plt.show()
 
-plot_metrics_flat(df_long, "analysis/figures/audiobox_irislike_plot")
+plot_metrics_flat(df_long, "analysis/figures/audiobox_irislike_plot.pdf")
 # Example randomness of the Diffusion process Prompt 5 Indie 
 # Load data
 data = pd.read_json('analysis/diffusion_variation.jsonl', lines=True)
@@ -467,8 +467,8 @@ ax.get_legend().get_title().set_fontsize(13)
 ax.set_xlim(0.9, 3.1)
 ax.set_xlabel("Score")
 ax.set_ylabel("Metric")
-ax.set_title("Diffusion Randomness PromptID:5", fontsize=16)
+ax.set_title("Diffusion Randomness PromptID:5")
 
 plt.tight_layout()
-plt.savefig("analysis/figures/diffusion_randomness.png", bbox_inches='tight')
+plt.savefig("analysis/figures/diffusion_randomness.pdf", bbox_inches='tight')
 plt.show()
