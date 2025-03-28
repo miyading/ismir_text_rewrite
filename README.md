@@ -1,7 +1,7 @@
 
 <center><h2>Enhancing Text-to-Music Generation through Retrieval-Augmented Prompt Rewrite</h2></center>
 
-[**📊 Dataset**](data) | [**📖 Paper**]()
+[**Dataset**](data) | [**Paper**]()
 
 This repository contains the official evaluation code and dataset for the paper  
 **"Enhancing Text-to-Music Generation through Retrieval-Augmented Prompt Rewrite."**
@@ -18,7 +18,7 @@ This figure shows two novice-to-expert prompt rewrite methods:
 
 ---
 
-## 🔍 Quick Start
+## Quick Start
 
 ### 1. Environment Setup
 
@@ -75,7 +75,7 @@ streamlit run scripts/streamlit_app.py
 
 ---
 
-## 📝 Survey Questions
+## Survey Questions
 
 Please respond to the following questions based on your evaluation experience:
 
