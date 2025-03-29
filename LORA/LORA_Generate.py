@@ -14,7 +14,7 @@ for novice_description in df['novice']:
     # Command to run the fine-tuned model using mlx_lm.generate
     command = [
         'mlx_lm.generate',
-        '--model', '/Users/huangjuhua/文档文稿/NYU/NLP_Final_Project/models/NEP2.0',
+        '--model', '/NEP2.0', #placeholder
         '--system-prompt', """ou are a helpful assistant that converts novice-friendly music descriptions into expert descriptions.\n\n
         Transform the given input novice-level prompt into a prompt that a user with extensive music training and terminologies would use to prompt music generation models.\n\n
         Keep the instruments, genres, mood, and other information that represents the essence of the music.\n\n
