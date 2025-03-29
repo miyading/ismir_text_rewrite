@@ -2,7 +2,7 @@ import pandas as pd
 import subprocess
 import sys
 
-file_path = "/Users/huangjuhua/Desktop/NYU/1011_NLP/NLP FInal Project/NLP Final Project Code/data/musiccaps-updated.csv"
+file_path = "" #placeholder
 
 df = pd.read_csv(file_path)
 
@@ -33,4 +33,4 @@ for novice_description in df['novice']:
 df['expert'] = expert_prompts
 
 
-df.to_csv('/Users/huangjuhua/Desktop/NYU/1011_NLP/NLP FInal Project/NLP Final Project Code/data/paired_dataset_LoRA.csv', index=False)  # Replace with your actual output path
+df.to_csv('/paired_dataset_LoRA.csv', index=False) #placeholder
