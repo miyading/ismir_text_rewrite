@@ -1,9 +1,9 @@
 
 <center><h2>Enhancing Text-to-Music Generation through Retrieval-Augmented Prompt Rewrite</h2></center>
 
-[**Dataset**](data) | [**Paper**]()
+[**Dataset**](data)
 
-This repository contains the code and dataset used for the paper  
+This repository contains the code and analysis used for the paper  
 **"Enhancing Text-to-Music Generation through Retrieval-Augmented Prompt Rewrite."**
 
 <p align="center">
