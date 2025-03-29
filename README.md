@@ -105,7 +105,9 @@ Please respond to the following questions based on your evaluation experience:
    *(For anonymous tracking only; not used for identification.)*
 
 8. **What is the ID of the current prompt under evaluation?**
-### Novice vs. LoRA v.s. RAG Prompts by Genre
+
+---
+## Novice vs. LoRA v.s. RAG Prompts by Genre
 
 | Prompt ID | Genre     | YouTube ID       | Novice Prompt                                                                                              | LoRA Rewrite | RAG Rewrite |
 |-----------|-----------|------------------|-------------------------------------------------------------------------------------------------------------|--------------|-------------|
