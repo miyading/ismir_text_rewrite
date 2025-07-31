@@ -134,7 +134,7 @@ RAG yields a higher proportion of top ratings (score = 3, shown in green) compar
 ### Audiobox Evaluation Scores
 
 <p align="center">
-  <img src="analysis/figures/audiobox_irislike_plot.pdf" alt="Audiobox Scores Collapsed Plot" width="700"/>
+  <img src="analysis/figures/audiobox_irislike_plot.png" alt="Audiobox Scores Collapsed Plot" width="700"/>
 </p>
 
 *Figure A2: Audiobox evaluation scores (CU, PC, PQ, CE) for music generated using Novice, LoRA, and RAG prompts. Each point represents an individual audio clip's score; boxplots summarize distributions per rewrite method.*
@@ -144,7 +144,7 @@ Both RAG and LoRA outperform Novice generations for CU, PQ, and CE.
 ### Diffusion Randomness
 
 <p align="center">
-  <img src="analysis/figures/diffusion_randomness.pdf" alt="diffusion_randomness" width="400"/>
+  <img src="analysis/figures/diffusion_randomness.png" alt="diffusion_randomness" width="400"/>
 </p>
 
 *Figure A3. Audiobox scores for music generated from the same Novice, LoRA, or RAG prompt (PromptID = 5).*
@@ -160,7 +160,7 @@ To assess text-to-music consistency, as discussed in Q6, we computed the CLAP sc
 ### Prompt-specific Variation
 
 <p align="center">
-  <img src="analysis/figures/survey_by_version_plot.pdf" alt="version" width="400"/>
+  <img src="analysis/figures/survey_by_version_plot.png" alt="version" width="400"/>
 </p>
 
 *Figure A4. Survey scores (Questions 2-5) for four evaluation metrics for music generated using Novice Baseline, LoRA, RAG prompts across PromptIDs. Each circle represents a participant rating. Diamonds indicate the mean score for each rewrite method within each PromptID.*
