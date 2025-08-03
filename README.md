@@ -1,8 +1,6 @@
 
 <center><h2>Enhancing Text-to-Music Generation through Retrieval-Augmented Prompt Rewrite</h2></center>
 
-[**Dataset**](data)
-
 This repository contains the code and analysis used for the paper  
 **"Enhancing Text-to-Music Generation through Retrieval-Augmented Prompt Rewrite."**
 
@@ -15,6 +13,12 @@ This figure shows two novice-to-expert prompt rewrite methods:
 1. **RAG** – A retrieval-augmented generation method that uses CLAP-based similarity to retrieve the top-$k=3$ most relevant audio captions. Participants select keywords (highlighted in blue) to guide GPT-3.5 in generating a custom expert-level prompt.
 
 2. **LoRA** – A fine-tuned model for prompt rewriting.
+
+## Dataset 
+
+We used the [MusicCaps dataset](https://www.kaggle.com/datasets/googleai/musiccaps) introduced by Agostinelli et al. (2023) as the RAG datastore and as the basis for LoRA fine-tuning. Out of the 5,521 music samples—including 1,000 genre-balanced examples spanning 24 genres—we were able to download 5,353 for computing text and audio embeddings. Each entry has an aspect list detailing musical features (e.g., "pop, mellow piano, high-pitched vocal") and a musician-written caption describing the 10 second YouTube music track. To tackle the scarcity of novice-style music descriptions, we leveraged GPT-3.5 for MusicCaps prompt simplification by providing 24 novice-style examples, one per genre. With in-context learning, we generated a new set of novice captions, resulting in 5,521 novice-expert caption pairs for LoRA fine-tuning.
+
+> Citation: Agostinelli, A., et al. (2023). *MusicLM: Generating Music From Text*. Google Research. [arXiv:2301.11325](https://arxiv.org/abs/2301.11325)
 
 ---
 
